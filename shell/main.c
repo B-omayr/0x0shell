@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 11:31:08 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/22 12:48:23 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int ac, char **av, char **env)
             return (0);
         if (!check_syntax(v_main.list))
         {
-            v_main.cmd = ft_parse(v_main.list, v_main.h_env);
+            v_main.cmd = ft_parse(v_main.list, v_main.h_env); /*You will work with this pointer*/
         }
         // t_tokens_list *temp;
         // temp = v_main.list;
@@ -40,22 +40,22 @@ int main(int ac, char **av, char **env)
         //     temp = temp->next;
         // }
         
-        t_command *temp;
-        temp = v_main.cmd;
-        int i = 0;
-        int j = 0;
+        // t_command *temp;
+        // temp = v_main.cmd;
+        // int i = 0;
+        // int j = 0;
         
-        while (temp != NULL)
-        {
-            i = 0;
-            while (temp->command[i] != NULL)
-            {
-                printf("%d : arg : %s, %d\n",j, temp->command[i], temp->separator);
-                i++;
-            }
-            j++;
-            temp = temp->next;
-        } 
+        // while (temp != NULL)
+        // {
+        //     i = 0;
+        //     while (temp->command[i] != NULL)
+        //     {
+        //         printf("%d : arg : %s, %d\n",j, temp->command[i], temp->separator);
+        //         i++;
+        //     }
+        //     j++;
+        //     temp = temp->next;
+        // } 
     }
     return (0);
 }
