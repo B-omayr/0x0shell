@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:00:17 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 11:14:43 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 09:07:23 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	join_word(t_tokens_list *head)
 	{
 		if (current->type == WORD && current->next->type == WORD)
 		{
-			printf("%s, %s\n", current->value, current->next->value);
 			len = get_lenght(current->value, '\0') + get_lenght(current->next->value, '\0') + 1;
 			str = malloc(sizeof(char) * len + 1);
 			if (!str)

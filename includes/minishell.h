@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 09:59:45 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/22 18:25:56 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 #define DOUBLE_GREATER 7
 #define DOUBLE_LESSER 8
 #define NEWLINE 9
+
+int quotes_count;
 
 typedef enum e_type {
     e_pipe, 

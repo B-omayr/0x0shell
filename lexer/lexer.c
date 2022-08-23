@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 11:11:46 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/22 18:38:07 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ t_tokens_list *ft_lexer(char *ln, t_main *v_main)
 		}
 	}
 	add_token_node(var, NEWLINE, ft_strdup("NEWLINE"));
-	printf("-----\n");
 	join_word(var);
 	return (var);
 }

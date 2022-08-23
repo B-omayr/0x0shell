@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 15:05:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 10:01:49 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 09:39:21 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ int find_even_quotes(char *ln, int *index, char type)
 		return (1);
 	else if (count % 2 != 0)
 	{
-		printf("\e[0;31mThe problem come from your quotes");
-		exit(1);
+		*index = i;
+		quotes_count = 1;
+		return (0);
 	} 
 	return (0);
 }
@@ -78,7 +79,6 @@ char *get_inside_quotes(char *ln, int *index, char type, t_main *v_main)
 		token[j++] = ln[i];
 	i++;
 	token[j] = '\0';
-	puts(token);
 	if (type == '"')
 		while (search_for_dollar(token) == 1)
 			expand_dollar(&token, v_main);	
@@ -92,6 +92,7 @@ char	*treat_quotes(int *index, char *ln, t_main *v_main)
 	int i;
 
 	i = *index;
+	quotes_count = 0;
 	if (find_even_quotes(ln, &i, ln[i]))
 	{
 		if ((temp = quotes_after_quotes(ln, &i, ln[i])))
@@ -106,5 +107,7 @@ char	*treat_quotes(int *index, char *ln, t_main *v_main)
 			return (temp);
 		}
 	}
-	return (NULL);
+	else
+		*index = i;;
+	return (ft_strdup(""));
 }

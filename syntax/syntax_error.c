@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/20 13:34:40 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/22 18:45:39 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ int check_errors(t_tokens_list *current, t_tokens_list *head)
     int ret;
 
     ret = 0;
+    if (quotes_count == 1)
+    {
+        printf("\e[7;91mThere is a problem came from your quotes\e[0m\n");
+        destroy_list(head);
+        ret = 1;
+    }
     if (current->type == NONE)
         ret = check_error_none(current, head);
     else if (current->type == PIPE)
