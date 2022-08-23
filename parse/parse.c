@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 10:46:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 11:18:32 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 16:01:57 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ t_command   *ft_parse(t_tokens_list *tokens_list, t_env *h_env)
     {
         if (var.current_token->type == WORD )
             get_cmd_arg(&var);
+        
         if (var.current_token->type == PIPE || var.current_token->type == NEWLINE)
             set_cmd(&var);
         var.current_token = var.current_token->next;

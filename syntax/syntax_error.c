@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 14:17:31 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 18:56:38 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int check_error_red(t_tokens_list *token_red, t_tokens_list *head)
         destroy_list(head);
         ret = 1;
     }
-    return (1);
+    return (ret);
 }
 
 int check_errors(t_tokens_list *current, t_tokens_list *head)

@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 15:39:00 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 19:22:21 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int main(int ac, char **av, char **env)
         if (!check_syntax(v_main.list))
         {
             v_main.cmd = ft_parse(v_main.list, v_main.h_env); /*You will work with this pointer*/
+            
         }
-        
         // t_tokens_list *temp;
         // temp = v_main.list;
         // while (temp != NULL)
@@ -41,6 +41,7 @@ int main(int ac, char **av, char **env)
         //     temp = temp->next;
         // } 
         
+       
         // t_command *temp;
         // temp = v_main.cmd;
         // int i = 0;
