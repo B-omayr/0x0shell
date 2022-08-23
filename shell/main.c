@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 09:10:37 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 15:39:00 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ int main(int ac, char **av, char **env)
         add_history(v_main.line);
         v_main.list = ft_lexer(v_main.line, &v_main);
         if(v_main.list == NULL)
-            return (0);
+            return (0); 
         if (!check_syntax(v_main.list))
         {
             v_main.cmd = ft_parse(v_main.list, v_main.h_env); /*You will work with this pointer*/
-            t_tokens_list *temp;
-            temp = v_main.list;
-            while (temp != NULL)
-            {
-                printf("type : {%d}; Value : {%s}\n", temp->type, temp->value);
-                temp = temp->next;
-            } 
         }
+        
+        // t_tokens_list *temp;
+        // temp = v_main.list;
+        // while (temp != NULL)
+        // {
+        //     printf("type : {%d}; Value : {%s}\n", temp->type, temp->value);
+        //     temp = temp->next;
+        // } 
         
         // t_command *temp;
         // temp = v_main.cmd;
@@ -56,7 +57,7 @@ int main(int ac, char **av, char **env)
         //     j++;
         //     temp = temp->next;
         // }
-        free(v_main.line);
+        // free(v_main.line);
     }
     return (0);
 }

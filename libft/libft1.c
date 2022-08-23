@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:32:51 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 10:42:04 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:49:09 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ char **ft_split(char *env)
     str[0][i] = '\0';
     str[1] = get_s1(env, str, i);
 	return (str);
+}
+
+int alpha_numeric(char c)
+{
+	if (!c)
+		return (0);
+	if ((c >= 0 && c <= 9) || (c >= 'a' && c <= 'z') 
+		|| (c >= 'A' && c <= 'Z') || c == '_')
+		return (1);
+	return (0);
 }
 
 int get_lenght(char *ln, char c)

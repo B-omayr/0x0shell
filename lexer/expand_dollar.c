@@ -6,36 +6,11 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:23:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 10:52:31 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:49:24 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-char	*get_dollar_name(char **token)
-{
-	char *d_name;
-	int len;
-	bool x;
-	int i;
-	int j;
-	
-	i = 0;
-	j = 0;
-	x = true;
-	len = dollar_name_len(token);
-	d_name = malloc(sizeof(char) * len + 1);
-	while ((*token)[i] != '\0' && x == true)
-	{
-		if ((*token)[i] == '$')
-		{
-			get_after_dollar(token, &i, &d_name);					
-			x = false;
-		}		
-		i++;
-	}
-	return (d_name);
-}
 
 char	*last_part_here(char **token, int *index)
 {
@@ -67,7 +42,8 @@ char	*get_last_part(char **token)
     {
 		if ((*token)[index] == '$')
 		{
-			index++;
+			while ((*token)[index] == '$')
+				index++;
             while ((*token)[index] != '\0')
             {
                 if (!alpha_numeric((*token)[index]))
@@ -107,29 +83,35 @@ char	*join_token(char **token, char *d_value)
 	return (ret);
 }
 
+char	*set_value(char *d_value, char *d_name, char **token, t_main *v_main)
+{
+	if (v_main->type_dollar == true)
+		*token = join_token(token, d_value);
+	else if (v_main->type_dollar == false)
+		*token = join_token(token, d_name);
+	return (0);	
+}
 
 int	expand_dollar(char **token, t_main *v_main)
 {
 	t_env *temp;
 	char *d_name;
-	char *d_value;
 
 	temp = v_main->h_env;
-	d_name = get_dollar_name(token);
+	d_name = get_dollar_name(token, v_main);
 	while (temp != NULL)
 	{
 		if (!ft_strcmp(d_name, temp->name))
 		{
-			d_value = temp->value;
+			set_value(temp->value, d_name, token, v_main);
 			free(d_name);
-			*token = join_token(token, d_value);
 			return (0);
-		}
+		}	
 		else if (temp->next == NULL && (ft_strcmp(d_name, temp->name)) != 0)
 		{
 			free(d_name);
-			d_value = NULL;
-			*token = join_token(token, d_value);
+			d_name = NULL;
+			*token = join_token(token, d_name);
 		}
 		temp = temp->next;
 	}

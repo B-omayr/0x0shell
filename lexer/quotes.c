@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 15:05:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 09:39:21 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 09:42:46 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,46 @@ char *quotes_after_quotes(char *ln, int *index, char type)
 	return (NULL);
 }
 
+// int find_even_quotes(char *ln, int *index, char type)
+// {
+// 	int i;
+// 	int count;
+
+// 	i = *index;
+// 	count = 0;
+// 	while (ln[i])
+// 	{
+// 		if (ln[i] == type)
+// 			count++;
+// 		i++;
+// 	}
+// 	if (count % 2 == 0)
+// 		return (1);
+// 	else if (count % 2 != 0)
+// 	{
+// 		*index = i;
+// 		quotes_count = 1;
+// 		return (0);
+// 	} 
+// 	return (0);
+// }
+
+
 int find_even_quotes(char *ln, int *index, char type)
 {
 	int i;
 	int count;
 
-	i = *index;
+	i = *index + 1;
 	count = 0;
 	while (ln[i])
 	{
 		if (ln[i] == type)
-			count++;
+			return (1);
 		i++;
 	}
-	if (count % 2 == 0)
-		return (1);
-	else if (count % 2 != 0)
-	{
-		*index = i;
-		quotes_count = 1;
-		return (0);
-	} 
+	*index = i;
+	quotes_count = 1;
 	return (0);
 }
 

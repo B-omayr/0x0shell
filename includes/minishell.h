@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 18:25:56 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:48:52 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ typedef struct s_command{
     struct s_command *next;
 } t_command;
 
+typedef struct s_rediction{
+    char *f_name;
+    
+} t_redirection;
+
 typedef struct s_parse{
     t_tokens_list *current_token;
     t_command   *cmd;
@@ -75,6 +80,7 @@ typedef struct s_main{
     t_command *cmd;
     t_env *h_env;
     char *line;
+    bool type_dollar;
 } t_main;
 
 
@@ -110,6 +116,8 @@ void	get_inside_bracket(char **token, int *index, char **d_name);
 int edit_token(char **token, t_main *v_main);
 int	join_word(t_tokens_list *v_main);
 int alpha_numeric(char c);
+void check_dollar_even(char **token, int *index, t_main *v_main);
+char	*get_dollar_name(char **token, t_main *v_main);
 
 /****************syntax Function***************/
 
