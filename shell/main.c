@@ -6,11 +6,35 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 19:22:21 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:35:43 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+char *get_type(int type) {
+    if (type == REDIR_GREATER)
+        return ">";
+    if (type == REDIR_LESSER)
+        return "<";
+    if (type == DOUBLE_GREATER)
+        return ">>";
+    if (type == DOUBLE_LESSER)
+        return "<<";
+    return "ze";
+}
+
+// void	signal_handler(int sig_num)
+// {
+// 	if (sig_num == SIGINT)
+// 	{
+// 		(void)sig_num;
+// 		printf("\n");
+// 		rl_on_new_line();
+// 		rl_replace_line("", 0);
+// 		rl_redisplay();
+// 	}
+// }
 
 int main(int ac, char **av, char **env)
 {
@@ -21,44 +45,32 @@ int main(int ac, char **av, char **env)
     ft_initialize_env(&v_main, ac, av, env);
     while (1)
     {
+        // signal(SIGINT, signal_handler);
         v_main.line = readline("\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m");
         if (v_main.line == NULL)
             return (0);
         add_history(v_main.line);
         v_main.list = ft_lexer(v_main.line, &v_main);
         if(v_main.list == NULL)
-            return (0); 
+            return (0);
         if (!check_syntax(v_main.list))
         {
             v_main.cmd = ft_parse(v_main.list, v_main.h_env); /*You will work with this pointer*/
-            
+            while(v_main.cmd)
+            {
+                t_redirection *red = v_main.cmd->redirections;
+                while (v_main.cmd->command && *(v_main.cmd->command)) {
+                    printf("%s ", *(v_main.cmd->command));
+                    (v_main.cmd->command)++;
+                }
+                while (red) {
+                    printf("%s %s ", get_type(red->type), red->f_name);
+                    red = red->next;
+                }
+                printf("\n");
+                v_main.cmd = v_main.cmd->next;
+            }
         }
-        // t_tokens_list *temp;
-        // temp = v_main.list;
-        // while (temp != NULL)
-        // {
-        //     printf("type : {%d}; Value : {%s}\n", temp->type, temp->value);
-        //     temp = temp->next;
-        // } 
-        
-       
-        // t_command *temp;
-        // temp = v_main.cmd;
-        // int i = 0;
-        // int j = 0;
-        
-        // while (temp != NULL)
-        // {
-        //     i = 0;
-        //     while (temp->command[i] != NULL)
-        //     {
-        //         printf("%d : arg : %s, %d\n",j, temp->command[i], temp->separator);
-        //         i++;
-        //     }
-        //     j++;
-        //     temp = temp->next;
-        // }
-        // free(v_main.line);
     }
     return (0);
 }

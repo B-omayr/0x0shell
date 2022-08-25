@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:32:51 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 13:49:09 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 14:44:58 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int ft_strcmp(char *str, char *ptr)
     return (str[i] - ptr[i]);
 }
 
-char **ft_split(char *env)
+char **ft_split1(char *env)
 {
 	char **str;
     int i;
@@ -63,7 +63,7 @@ int get_lenght(char *ln, char c)
     return (i);
 }
 
-char *ft_strdup(char *str)
+char *ft_strdup1(char *str)
 {
 	char *ptr;
 	int len;
@@ -78,7 +78,7 @@ char *ft_strdup(char *str)
     return (ptr);
 }
 
-char *ft_strchr(char *str, char c)
+char *ft_strchr1(char *str, char c)
 {
     int i;
     int len;
@@ -103,7 +103,7 @@ int	lenght_of_word(char *ln, int *index)
 
 	i = *index;
 	len = 0;
-	while (ln[i] != '\0' && (ft_strchr("|> <;", ln[i])) == NULL)
+	while (ln[i] != '\0' && (ft_strchr1("|> <;", ln[i])) == NULL)
 	{
 		i++;
 		len++;
@@ -111,7 +111,7 @@ int	lenght_of_word(char *ln, int *index)
 	return (len);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin1(char *s1, char *s2)
 {
 	char	*str;
 	int		len;
@@ -121,9 +121,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	r = 0;
 	if (!s1)
-		s1 = ft_strdup("");
+		s1 = ft_strdup1("");
 	if (!s2)
-		s2 = ft_strdup("");
+		s2 = ft_strdup1("");
 	len = get_lenght(s1, '\0') + get_lenght(s2, '\0') + 1;
 	str = malloc(sizeof(char) * len + 1);
 	if (!str)

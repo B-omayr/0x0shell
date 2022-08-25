@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utiles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 15:38:07 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/21 15:38:15 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/24 09:56:01 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int ft_strcmp_int(int x, int y)
 void initialize_var(t_parse *var, t_tokens_list *tokens_list)
 {
     var->current_token = tokens_list;
+    var->redirections = NULL;
     var->cmd_arg = NULL;
     var->cmd = NULL;
     var->size = 0;

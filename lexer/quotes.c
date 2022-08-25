@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 15:05:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 09:42:46 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 13:37:42 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,6 @@ char *quotes_after_quotes(char *ln, int *index, char type)
 	return (NULL);
 }
 
-// int find_even_quotes(char *ln, int *index, char type)
-// {
-// 	int i;
-// 	int count;
-
-// 	i = *index;
-// 	count = 0;
-// 	while (ln[i])
-// 	{
-// 		if (ln[i] == type)
-// 			count++;
-// 		i++;
-// 	}
-// 	if (count % 2 == 0)
-// 		return (1);
-// 	else if (count % 2 != 0)
-// 	{
-// 		*index = i;
-// 		quotes_count = 1;
-// 		return (0);
-// 	} 
-// 	return (0);
-// }
-
-
 int find_even_quotes(char *ln, int *index, char type)
 {
 	int i;
@@ -73,11 +48,15 @@ int find_even_quotes(char *ln, int *index, char type)
 	return (0);
 }
 
-int len_inside_quotes(int i, char *ln, char type)
+int len_inside_quotes(int i, char *ln, char type, t_main *v_main)
 {
 	int j;
 	
 	j = 0;
+	if (type == '"')
+		v_main->quotes_type = true;
+	else
+		v_main->quotes_type = false;
 	while (ln[++i] != type)
 		j++;
 	return (j);
@@ -92,7 +71,7 @@ char *get_inside_quotes(char *ln, int *index, char type, t_main *v_main)
 
 	j = 0;
 	i = *index;
-	len = len_inside_quotes(i, ln, type);
+	len = len_inside_quotes(i, ln, type, v_main);
 	token = malloc(sizeof(char) * len + 1);
 	while (ln[++i] != type)
 		token[j++] = ln[i];
@@ -114,8 +93,10 @@ char	*treat_quotes(int *index, char *ln, t_main *v_main)
 	quotes_count = 0;
 	if (find_even_quotes(ln, &i, ln[i]))
 	{
-		if ((temp = quotes_after_quotes(ln, &i, ln[i])))
+		if (quotes_after_quotes(ln, &i, ln[i]))
 		{
+			i -= 2;
+			temp = quotes_after_quotes(ln, &i, ln[i]);
 			*index = i;
 			return (temp);
 		}
@@ -128,5 +109,5 @@ char	*treat_quotes(int *index, char *ln, t_main *v_main)
 	}
 	else
 		*index = i;;
-	return (ft_strdup(""));
+	return (ft_strdup1(""));
 }

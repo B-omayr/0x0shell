@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:15:05 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/20 13:34:40 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:39:06 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int  get_token_pipe(t_tokens_list *var, int i)
 {
 	char *token;
 
-	token = ft_strdup("|");
+	token = ft_strdup1("|");
 	add_token_node(var, PIPE, token);
 	return (i);
 }
@@ -27,16 +27,26 @@ int get_token_redir_greater(t_tokens_list *var, char *ln, int i)
 
 	if (ln[i + 1] == '>')
 	{
-		token = ft_strdup(">>");
+		token = ft_strdup1(">>");
 		add_token_node(var, DOUBLE_GREATER, token);
 		i++;
 	}
 	else
 	{
-		token = ft_strdup(">");
+		token = ft_strdup1(">");
 		add_token_node(var, REDIR_GREATER, token);
 	}
 		
+	return (i);
+}
+
+int	get_token_space(t_tokens_list *var, char *ln, int i)
+{
+	char *token;
+	while (ln[i] == ' ' || ln[i] == '\t')
+		i++;
+	token = ft_strdup1(" ");
+	add_token_node(var, SPACE, token);
 	return (i);
 }
 
@@ -46,25 +56,17 @@ int get_token_redir_lesser(t_tokens_list *var, char *ln, int i)
 
 	if (ln[i + 1] == '<')
 	{
-		token = ft_strdup("<<");
+		token = ft_strdup1("<<");
 		add_token_node(var, DOUBLE_LESSER, token);
 		i++;
+		get_delimitter(var, ln, &i);
+		
 	}
 	else
 	{
-		token = ft_strdup("<");
+		token = ft_strdup1("<");
 		add_token_node(var, REDIR_LESSER, token);
 	}
-	return (i);
-}
-
-int	get_token_space(t_tokens_list *var, char *ln, int i)
-{
-	char *token;
-	while (ln[i] == ' ' || ln[i] == '\t')
-		i++;
-	token = ft_strdup(" ");
-	add_token_node(var, SPACE, token);
 	return (i);
 }
 

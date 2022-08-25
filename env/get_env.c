@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:34:23 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/20 13:34:40 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 13:39:44 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ t_env *create_env_list(t_env *h_env, char **env)
     i = 0;
     if (env[0])
     {
-        str = ft_split(env[0]);
+        str = ft_split1(env[0]);
         h_env = create_first_node(str[0], str[1]);
         free(str);
     }
     while (env[++i])
     {
-        str = ft_split(env[i]);
+        str = ft_split1(env[i]);
         add_env_node(h_env, str[0], str[1]);
         free(str);
     }

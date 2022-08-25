@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:23:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 13:49:24 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 13:38:06 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,18 @@ char	*join_token(char **token, char *d_value)
 		i++;
 	}
 	temp[i] = '\0';
-	res = ft_strjoin(temp, d_value);
+	res = ft_strjoin1(temp, d_value);
 	temp = get_last_part(token);
-	ret = ft_strjoin(res, temp);
+	ret = ft_strjoin1(res, temp);
 	free(temp);
 	return (ret);
 }
 
 char	*set_value(char *d_value, char *d_name, char **token, t_main *v_main)
 {
-	if (v_main->type_dollar == true)
+	if (v_main->dollar_type == true)
 		*token = join_token(token, d_value);
-	else if (v_main->type_dollar == false)
+	else if (v_main->dollar_type == false)
 		*token = join_token(token, d_name);
 	return (0);	
 }

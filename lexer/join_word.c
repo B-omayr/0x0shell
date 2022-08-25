@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:00:17 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 09:07:23 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:35:32 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	join_word(t_tokens_list *head)
 			str = malloc(sizeof(char) * len + 1);
 			if (!str)
 				return (0);
-			str = ft_strjoin(current->value, current->next->value);
+			str = ft_strjoin1(current->value, current->next->value);
 			temp = current->next;
 			current->value = str;
 			current->next = temp->next;

@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:57:32 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 13:49:03 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/24 16:49:38 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void check_dollar_even(char **token, int *index, t_main *v_main)
 	while ((*token)[i++] == '$')
 		count++;
 	if (count % 2 != 0)
-		v_main->type_dollar = true;
+		v_main->dollar_type = true;
 	else
-		v_main->type_dollar = false;
+		v_main->dollar_type = false;
 }
 
 char	*get_dollar_name(char **token, t_main *v_main)

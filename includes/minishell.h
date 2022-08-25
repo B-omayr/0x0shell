@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/23 13:48:52 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:38:56 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@
 
 int quotes_count;
 
-typedef enum e_type {
-    e_pipe, 
-    e_newline,
-}	t_type;
-
 typedef struct s_lexer{
     int i;
     char *token;
@@ -57,21 +52,23 @@ typedef struct s_env{
     struct s_env *next;
 } t_env;
 
+typedef struct s_redirection {
+    char *f_name;
+    int type;
+    struct s_redirection *next;
+} t_redirection;
+
 typedef struct s_command{
     char **command;
-    t_type separator;
+    t_redirection *redirections;
     struct s_command *next;
 } t_command;
-
-typedef struct s_rediction{
-    char *f_name;
-    
-} t_redirection;
 
 typedef struct s_parse{
     t_tokens_list *current_token;
     t_command   *cmd;
     char **cmd_arg;
+    t_redirection *redirections;
     int size;
 } t_parse;
 
@@ -80,19 +77,20 @@ typedef struct s_main{
     t_command *cmd;
     t_env *h_env;
     char *line;
-    bool type_dollar;
+    bool dollar_type;
+    bool quotes_type;
 } t_main;
 
 
 /****************libft Function****************/
 
-char	**ft_split(char *env);
-char	*ft_strdup(char *str);
+char	**ft_split1(char *env);
+char	*ft_strdup1(char *str);
 int		get_lenght(char *ln, char c);
-char	*ft_strchr(char *str, char c);
+char	*ft_strchr1(char *str, char c);
 int		ft_strcmp(char *str, char *ptr);
 int		lenght_of_word(char *ln, int *index);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin1(char *s1, char *s2);
 
 /*****************env Function*****************/
 
@@ -118,6 +116,8 @@ int	join_word(t_tokens_list *v_main);
 int alpha_numeric(char c);
 void check_dollar_even(char **token, int *index, t_main *v_main);
 char	*get_dollar_name(char **token, t_main *v_main);
+void get_delimitter(t_tokens_list *var, char *ln, int *index);
+int	get_token_space(t_tokens_list *var, char *ln, int i);
 
 /****************syntax Function***************/
 

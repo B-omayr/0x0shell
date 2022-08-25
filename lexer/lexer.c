@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/22 18:38:07 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:36:13 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_tokens_list *initialize_lst()
 
 	first_token = malloc(sizeof(t_tokens_list));
 	first_token->type = NONE;
-	first_token->value = ft_strdup("NONE");
+	first_token->value = ft_strdup1("NONE");
 	first_token->next = NULL;
 	return (first_token);
 }
@@ -46,14 +46,14 @@ char *take_word(char *ln, int *index)
 	i = *index;
 	j = 0;
 	len = 1;
-	while (ln[i] != '\0' && (ft_strchr("|> \"<'", ln[i])) == NULL)
+	while (ln[i] != '\0' && (ft_strchr1("|> \"<'", ln[i])) == NULL)
 	{
 		len++;
 		i++;
 	}
 	i = *index;
 	temp = malloc(sizeof(char) * len + 1);
-	while (ln[i] && (ft_strchr("|> \"<'", ln[i])) == NULL)
+	while (ln[i] && (ft_strchr1("|> \"<'", ln[i])) == NULL)
 		temp[j++] = ln[i++];
 	temp[j] = '\0';
 	*index = i;
@@ -66,8 +66,8 @@ char *get_word(char *ln, int *index, t_main *v_main)
 	char *token;
 
 	i = *index;
-	token = ft_strdup("");
-	while (ln[i] != '\n' && (ft_strchr("|> <", ln[i])) == NULL)
+	token = ft_strdup1("");
+	while (ln[i] != '\n' && (ft_strchr1("|> <", ln[i])) == NULL)
 	{
 		if (ln[i] == '\'' || ln[i] == '"')
 		{
@@ -96,7 +96,7 @@ t_tokens_list *ft_lexer(char *ln, t_main *v_main)
 	var = initialize_lst();
 	while (ln[lexer.i])
 	{
-		lexer.token = ft_strdup("");
+		lexer.token = ft_strdup1("");
 		lexer.temp = lexer.token;
 		if (lexer.i == 0)
 			while (ln[lexer.i] == '\t' || ln[lexer.i] == ' ')
@@ -105,14 +105,14 @@ t_tokens_list *ft_lexer(char *ln, t_main *v_main)
 			|| ln[lexer.i] == ' ' || ln[lexer.i] == '\t')
 			get_symbol(var, ln, &lexer.i);
 		free(lexer.temp);
-		if (ln[lexer.i] && (ft_strchr("|> <", ln[lexer.i])) == NULL)
+		if (ln[lexer.i] && (ft_strchr1("|> <", ln[lexer.i])) == NULL)
 			lexer.token = get_word(ln, &lexer.i, v_main);
 		if (ft_strcmp(lexer.token, "") != 0)
 		{
 			add_token_node(var, WORD, lexer.token);
 		}
 	}
-	add_token_node(var, NEWLINE, ft_strdup("NEWLINE"));
+	add_token_node(var, NEWLINE, ft_strdup1("NEWLINE"));
 	join_word(var);
 	return (var);
 }
