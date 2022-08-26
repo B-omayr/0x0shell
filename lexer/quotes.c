@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 15:05:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/25 13:37:42 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/26 17:03:46 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ char	*treat_quotes(int *index, char *ln, t_main *v_main)
 		}
 	}
 	else
-		*index = i;;
+		*index = i;
 	return (ft_strdup1(""));
 }

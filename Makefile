@@ -6,11 +6,11 @@
 #    By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 16:41:15 by iomayr            #+#    #+#              #
-#    Updated: 2022/08/25 16:39:54 by iomayr           ###   ########.fr        #
+#    Updated: 2022/08/26 11:35:08 by iomayr           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g
 
 CC = gcc
 

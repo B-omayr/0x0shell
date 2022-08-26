@@ -3,14 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utiles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 15:38:07 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/24 09:56:01 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:24:25 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void malloc_cmd_arg(t_parse *var)
+{
+    t_tokens_list *token;
+    int i;
+
+    i = 0;
+    token = var->current_token;
+    var->cmd_arg = malloc(sizeof(char *) * var->size + 1);
+    while (i < var->size)
+    {
+        if (token->type == WORD)
+            var->cmd_arg[i++] = ft_strdup1(token->value);
+        if (token->type == REDIR_GREATER || token->type == REDIR_LESSER
+            || token->type == DOUBLE_GREATER || token->type == DOUBLE_LESSER)
+            token = token->next;
+        token = token->next;
+    }
+    var->cmd_arg[i] = NULL;
+}
+
+void get_cmd_arg(t_parse *var)
+{
+    t_tokens_list *token;
+
+    int i;
+    var->cmd_arg = NULL;
+    var->size = 0;
+    i = 0;
+    token = var->current_token;
+    while (token->type != PIPE
+        && token->type != NEWLINE)
+    {
+        if (token->type == WORD)
+            var->size++;
+        if (token->type == REDIR_GREATER || token->type == REDIR_LESSER
+            || token->type == DOUBLE_GREATER || token->type == DOUBLE_LESSER)
+            token = token->next;
+        token = token->next;
+    }
+    malloc_cmd_arg(var);
+}
 
 int ft_strcmp_int(int x, int y)
 {

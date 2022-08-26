@@ -6,44 +6,11 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 10:46:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/25 13:37:42 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/26 18:15:12 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void get_cmd_arg(t_parse *var)
-{
-    t_tokens_list *token;
-
-    int i;
-    var->cmd_arg = NULL;
-    var->size = 0;
-    i = 0;
-    token = var->current_token;
-    while (token->type != PIPE
-        && token->type != NEWLINE)
-    {
-        if (token->type == WORD)
-            var->size++;
-        if (token->type == REDIR_GREATER || token->type == REDIR_LESSER
-            || token->type == DOUBLE_GREATER || token->type == DOUBLE_LESSER)
-            token = token->next;
-        token = token->next;
-    }
-    var->cmd_arg = malloc(sizeof(char *) * var->size + 1);
-    token = var->current_token;
-    while (i < var->size)
-    {
-        if (token->type == WORD)
-            var->cmd_arg[i++] = ft_strdup1(token->value);
-        if (token->type == REDIR_GREATER || token->type == REDIR_LESSER
-            || token->type == DOUBLE_GREATER || token->type == DOUBLE_LESSER)
-            token = token->next;
-        token = token->next;
-    }
-    var->cmd_arg[i] = NULL;
-}
 
 t_command *first_cmd(char **cmd_arg, t_redirection *redirections)
 {
@@ -123,22 +90,22 @@ void set_cmd(t_parse *var)
 
 void    set_redirection(t_parse *var, t_tokens_list *token)
 {
-    t_redirection *redirections;
     t_redirection *redirection;
+    t_redirection *temp;
 
     redirection = malloc(sizeof(t_redirection));
     redirection->type = token->type;
     redirection->f_name = token->next->value; // validate the syntax before this
     redirection->next = NULL;
-    redirections = var->redirections;
-    if (!redirections)
+    temp = var->redirections;
+    if (!temp)
     {
         var->redirections = redirection;
         return ;
     }
-    while (redirections->next)
-        redirections = redirections->next;
-    redirections->next = redirection;   
+    while (temp->next)
+        temp = temp->next;
+    temp->next = redirection;   
 }
 
 t_command   *ft_parse(t_tokens_list *tokens_list, t_env *h_env)

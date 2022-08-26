@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/25 16:36:13 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/26 18:29:43 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,12 @@ t_tokens_list *ft_lexer(char *ln, t_main *v_main)
 				lexer.i++; 
 		if (ln[lexer.i] == '|' || ln[lexer.i] == '>' || ln[lexer.i] == '<' 
 			|| ln[lexer.i] == ' ' || ln[lexer.i] == '\t')
-			get_symbol(var, ln, &lexer.i);
+			get_symbol(var, ln, &lexer.i, v_main);
 		free(lexer.temp);
 		if (ln[lexer.i] && (ft_strchr1("|> <", ln[lexer.i])) == NULL)
 			lexer.token = get_word(ln, &lexer.i, v_main);
 		if (ft_strcmp(lexer.token, "") != 0)
-		{
 			add_token_node(var, WORD, lexer.token);
-		}
 	}
 	add_token_node(var, NEWLINE, ft_strdup1("NEWLINE"));
 	join_word(var);

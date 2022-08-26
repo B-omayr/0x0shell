@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:23:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/25 13:38:06 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/26 12:45:38 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,7 @@ int	expand_dollar(char **token, t_main *v_main)
 		else if (temp->next == NULL && (ft_strcmp(d_name, temp->name)) != 0)
 		{
 			free(d_name);
-			d_name = NULL;
-			*token = join_token(token, d_name);
+			*token = join_token(token, NULL);
 		}
 		temp = temp->next;
 	}
