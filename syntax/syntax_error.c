@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 16:37:17 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/27 18:22:37 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int check_errors(t_tokens_list *current, t_tokens_list *head)
     return (ret);
 }
 
-int check_syntax(t_tokens_list *head)
+int check_syntax(t_tokens_list *head, t_main *v_main)
 {
     t_tokens_list	*temp;
 	char			*tmp;
@@ -92,7 +92,7 @@ int check_syntax(t_tokens_list *head)
         if (temp->type == DOUBLE_LESSER)
         {
 			tmp = temp->next->value;
-            temp->next->value = traite_herdoc(temp->next->value);
+            temp->next->value = traite_herdoc(temp->next->value, v_main);
 			free(tmp);
             temp = temp->next;
         }

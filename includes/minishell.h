@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 16:35:42 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/27 18:13:05 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,37 @@ int arg_size(char **cmd_arg);
 int ft_strcmp_int(int x, int y);
 void get_cmd_arg(t_parse *var);
 char	*traite_herdoc(char *del);
+/****************builtins functions****************/
+int		built_cd(char *path, t_env **our_env);
+int     option_n_enbaled(char **cmd_args);
+int		built_echo(char **cmd_args);
+void	built_env(t_env **our_env);
+int		validity_of_var_name(char *var_name);
+void	add_variable_to_env(char *name, char *value, t_env **our_env);
+void	export_var(char *variable, t_env **our_env, int to_join);
+int		built_export(char **cmd_args, t_env **our_env);
+void	built_pwd(void);
+int		built_unset(char **cmd_args, t_env **our_env);
+t_env	*find_variable(t_env **our_env, char *variable);
+char	*get_variable_name(char *parsed_line);
+char	*get_variable_value(char *parsed_line);
+void	delete_var_env(t_env **our_env, t_env *var_to_delete);
+void	update_env_pwd(t_env **our_env, char *new_value);
+char	**convert_env_to_matrix(t_env *our_env);
+int	    is_it_builtin(char **cmd);
+int	    excute_builtins(char **cmd, t_env **our_env);
+/****************redirections****************/
+int     out_redirection(char *file_path);
+int     in_redirection(char *file_path);
+int	    append_redirection(char *file_path);
+int     handel_redirections(t_command *cmd);
+/****************excution****************/
+char	*get_cmd(char **paths, char *cmd);
+char	*find_cmd_path(t_env **our_env, char *cmd);
+void    run_simple_cmd(t_main *main);
+int     simple_command(t_main *v_main);
+void	excute_cmd(t_main *v_main);
+void	run_multi_cmd(t_main *v_main);
+int	    list_cmd_size(t_command *cmd);
 
 #endif

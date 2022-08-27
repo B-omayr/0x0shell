@@ -3,76 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 16:22:00 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/27 18:22:13 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char *get_type(int type) {
-    if (type == REDIR_GREATER)
-        return ">";
-    if (type == REDIR_LESSER)
-        return "<";
-    if (type == DOUBLE_GREATER)
-        return ">>";
-    if (type == DOUBLE_LESSER)
-        return "<<";
-    return "ze";
-}
-
-// void	signal_handler(int sig_num)
-// {
-// 	if (sig_num == SIGINT)
-// 	{
-// 		(void)sig_num;
-// 		printf("\n");
-// 		rl_on_new_line();
-// 		rl_replace_line("", 0);
-// 		rl_redisplay();
-// 	}
-// }
-
 int main(int ac, char **av, char **env)
 {
-    t_main v_main;
-    t_lexer *lexer;
+	t_main v_main;
+	t_lexer *lexer;
+	int     IO[2];
 
-    lexer = NULL;
-    ft_initialize_env(&v_main, ac, av, env);
-    while (1)
-    {
-        // rl_catch_signals = 0;
-        signal(SIGQUIT, SIG_IGN);
-        v_main.line = readline("\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m");
-        if (v_main.line == NULL)
-            return (0);
-        add_history(v_main.line);
-        v_main.list = ft_lexer(v_main.line, &v_main);
-        if(v_main.list == NULL)
-            return (0);
-        if (!check_syntax(v_main.list))
-        {
-            v_main.cmd = ft_parse(v_main.list, v_main.h_env); /*You will work with this pointer*/
-            while(v_main.cmd)
-            {
-                t_redirection *red = v_main.cmd->redirections;
-                while (v_main.cmd->command && *(v_main.cmd->command)) {
-                    printf("%s ", *(v_main.cmd->command));
-                    (v_main.cmd->command)++;
-                }
-                while (red) {
-                    printf("%s %s ", get_type(red->type), red->f_name);
-                    red = red->next;
-                }
-                printf("\n");
-                v_main.cmd = v_main.cmd->next;
-            }
-        }
-        free(v_main.line);
-    }
-    return (0);
+	IO[0] = dup(0);
+	IO[1] = dup(1);
+	lexer = NULL;
+	ft_initialize_env(&v_main, ac, av, env);
+	while (1)
+	{
+		dup2(IO[0], 0);
+		dup2(IO[1], 1);
+		v_main.line = readline("\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m");
+		if (v_main.line == NULL)
+			return (0);
+		add_history(v_main.line);
+		v_main.list = ft_lexer(v_main.line, &v_main);
+		if(v_main.list == NULL)
+			return (0); 
+		if (!check_syntax(v_main.list, v_main))
+		{
+			v_main.cmd = ft_parse(v_main.list, v_main.h_env); /*You will work with this pointer*/
+			if (list_cmd_size(v_main.cmd) == 1)
+				simple_command(&v_main);
+			else if (list_cmd_size(v_main.cmd) > 1) 
+				run_multi_cmd(&v_main);
+			close(0);
+			// waitpid(-1, 0, 0);
+				// handel_redirections(v_main.cmd);
+			// if (is_it_builtin(v_main.cmd->command))
+			// 	excute_builtins(v_main.cmd->command, &v_main.h_env);
+	   }
+		// t_tokens_list *temp;
+		// temp = v_main.list;
+		// while (temp != NULL)
+		// {
+		//     printf("type : {%d}; Value : {%s}\n", temp->type, temp->value);
+		//     temp = temp->next;
+		// } 
+		
+	   
+		// t_command *temp;
+		// temp = v_main.cmd;
+		// int i = 0;
+		// int j = 0;
+		
+		// while (temp != NULL)
+		// {
+		//     i = 0;
+		//     while (temp->command[i] != NULL)
+		//     {
+		//         printf("%d : arg : %s, %d\n",j, temp->command[i], temp->separator);
+		//         i++;
+		//     }
+		//     j++;
+		//     temp = temp->next;
+		// }
+		// free(v_main.line);
+	}
+	close(IO[0]);
+	close(IO[1]);
+	return (0);
 }
