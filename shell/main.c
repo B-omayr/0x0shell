@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 18:22:13 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:50:43 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int ac, char **av, char **env)
 		v_main.list = ft_lexer(v_main.line, &v_main);
 		if(v_main.list == NULL)
 			return (0); 
-		if (!check_syntax(v_main.list, v_main))
+		if (!check_syntax(v_main.list, &v_main))
 		{
 			v_main.cmd = ft_parse(v_main.list, v_main.h_env); /*You will work with this pointer*/
 			if (list_cmd_size(v_main.cmd) == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 18:13:05 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:50:00 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int check_quotess(char *str);
 
 /****************syntax Function***************/
 
-int	check_syntax(t_tokens_list *var);
+int	check_syntax(t_tokens_list *var, t_main *v_main);
 void destroy_list(t_tokens_list *list);
 void display_message(char *value);
 
@@ -140,7 +140,8 @@ void initialize_var(t_parse *var, t_tokens_list *tokens_list);
 int arg_size(char **cmd_arg);
 int ft_strcmp_int(int x, int y);
 void get_cmd_arg(t_parse *var);
-char	*traite_herdoc(char *del);
+char	*traite_herdoc(char *del, t_main *v_main);
+
 /****************builtins functions****************/
 int		built_cd(char *path, t_env **our_env);
 int     option_n_enbaled(char **cmd_args);
