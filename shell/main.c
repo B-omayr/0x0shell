@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/26 18:35:27 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/27 16:22:00 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int main(int ac, char **av, char **env)
     ft_initialize_env(&v_main, ac, av, env);
     while (1)
     {
-        // signal(SIGINT, signal_handler);
+        // rl_catch_signals = 0;
+        signal(SIGQUIT, SIG_IGN);
         v_main.line = readline("\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m");
         if (v_main.line == NULL)
             return (0);
@@ -71,6 +72,7 @@ int main(int ac, char **av, char **env)
                 v_main.cmd = v_main.cmd->next;
             }
         }
+        free(v_main.line);
     }
     return (0);
 }

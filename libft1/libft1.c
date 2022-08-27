@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:32:51 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/25 17:29:25 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/27 09:33:39 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int get_lenght(char *ln, char c)
     i = 0;
 	if (ln == NULL)
 		return (0);
-    while (ln[i] && ln[i] != c)
+    while (ln[i] != c)
         i++;
     return (i);
 }
@@ -76,64 +76,4 @@ char *ft_strdup1(char *str)
 		ptr[i] = str[i];
     ptr[i] = '\0';
     return (ptr);
-}
-
-char *ft_strchr1(char *str, char c)
-{
-    int i;
-    int len;
-
-    i = 0;
-    len = get_lenght(str, '\0');
-    if (c == '\0')
-        return (&str[len]);
-    while (str[i])
-    {
-        if (str[i] == c)
-            return (&str[i]);
-        i++;
-    }
-    return (NULL);
-}
-
-int	lenght_of_word(char *ln, int *index)
-{
-	int i;
-	int len;
-
-	i = *index;
-	len = 0;
-	while (ln[i] != '\0' && (ft_strchr1("|> <;", ln[i])) == NULL)
-	{
-		i++;
-		len++;
-	}
-	return (len);
-}
-
-char	*ft_strjoin1(char *s1, char *s2)
-{
-	char	*str;
-	int		len;
-	int		i;
-	int		r;
-
-	i = 0;
-	r = 0;
-	if (!s1)
-		s1 = ft_strdup1("");
-	if (!s2)
-		s2 = ft_strdup1("");
-	len = get_lenght(s1, '\0') + get_lenght(s2, '\0') + 1;
-	str = malloc(sizeof(char) * len + 1);
-	if (!str)
-		return (NULL);
-	while (s1[i])
-		str[r++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		str[r++] = s2[i++];
-	str[r] = 0;
-    free(s1);
-	return (str);
 }

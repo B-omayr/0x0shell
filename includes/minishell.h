@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/26 18:30:19 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/27 16:35:42 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "../libft/libft.h"
 
 
 #define PIPE 1
@@ -138,5 +140,6 @@ void initialize_var(t_parse *var, t_tokens_list *tokens_list);
 int arg_size(char **cmd_arg);
 int ft_strcmp_int(int x, int y);
 void get_cmd_arg(t_parse *var);
+char	*traite_herdoc(char *del);
 
 #endif
