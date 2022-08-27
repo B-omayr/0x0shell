@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+         #
+#    By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 16:41:15 by iomayr            #+#    #+#              #
-#    Updated: 2022/08/27 18:12:04 by youchenn         ###   ########.fr        #
+#    Updated: 2022/08/27 18:57:35 by iomayr           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,17 @@ SRC = lexer/expand_dollar_utiles.c lexer/join_word.c \
 		herdoc/treat_herdoc.c \
 		shell/main.c \
 		redirections/redirections.c \
-		./builtins/builtin_cd.c     \
-		./builtins/is_it_a_builtin.c \
-		./builtins/builtin_echo.c   \
-		./builtins/builtin_env.c    \
-		./builtins/builtin_export.c \
-		./builtins/builtin_pwd.c    \
-		./builtins/builtin_unset.c  \
-		./builtins/builtins.c       \
-		./builtins/handel_env.c     \
-		./builtins/utils_for_env.c \
-		./excution/find_path.c 		\
+		builtins/builtin_cd.c     \
+		builtins/is_it_a_builtin.c \
+		builtins/builtin_echo.c   \
+		builtins/builtin_env.c    \
+		builtins/builtin_export.c \
+		builtins/builtin_pwd.c    \
+		builtins/builtin_unset.c  \
+		builtins/builtins.c       \
+		builtins/handel_env.c     \
+		builtins/utils_for_env.c \
+		excution/find_path.c 		\
 
 OBJ = ${SRC:%.c=%.o}
 
