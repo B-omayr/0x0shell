@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 16:09:04 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 18:05:06 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_global{
     int quotes_count;
 } t_global;
 
-extern t_global v_global;
+t_global v_global;
 
 typedef struct s_lexer{
     int i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:20:55 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/27 17:39:21 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:15:47 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,19 @@ int	option_n_enbaled(char **cmd_args)
 
 int	built_echo(char **cmd_args)
 {
-	int start; 
+	int start;
+	int size;
 
 	start = option_n_enbaled(cmd_args);
-	while (cmd_args[start])
+	size = start;
+	while (cmd_args[size])
 	{
-		ft_putstr_fd(cmd_args[start], 1);
-		if (cmd_args[start + 1])
+		ft_putstr_fd(cmd_args[size], 1);
+		if (cmd_args[size + 1])
 			ft_putchar_fd(' ', 1);
-		start++;
+		size++;
 	}
-	if (!start)
+	if (start == 1)
 		ft_putchar_fd('\n', 1);
 	return (0);
 }
