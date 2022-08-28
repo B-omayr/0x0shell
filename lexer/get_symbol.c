@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:15:05 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/26 18:29:20 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 14:30:46 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int get_token_redir_greater(t_tokens_list *var, char *ln, int i)
 	return (i);
 }
 
-int	get_token_space(t_tokens_list *var, char *ln, int i)
+int	get_token_ESPACE(t_tokens_list *var, char *ln, int i)
 {
 	char *token;
 	while (ln[i] == ' ' || ln[i] == '\t')
 		i++;
 	token = ft_strdup1(" ");
-	add_token_node(var, SPACE, token);
+	add_token_node(var, ESPACE, token);
 	return (i);
 }
 
@@ -82,6 +82,6 @@ void    get_symbol(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 	if (ln[i] == '<')
 		i = get_token_redir_lesser(var, ln, i, v_main) + 1;
 	if (ln[i] == ' ' || ln[i] == '\t')
-		i = get_token_space(var, ln, i);
+		i = get_token_ESPACE(var, ln, i);
 	*index = i;
 } 

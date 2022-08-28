@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 15:38:07 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/26 18:24:25 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 14:31:20 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void get_cmd_arg(t_parse *var)
     i = 0;
     token = var->current_token;
     while (token->type != PIPE
-        && token->type != NEWLINE)
+        && token->type != ENEWLINE)
     {
         if (token->type == WORD)
             var->size++;

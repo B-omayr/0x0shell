@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 18:50:00 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 16:09:04 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,19 @@
 #define PIPE 1
 #define WORD 2
 #define NONE 3
-#define SPACE 4
+#define ESPACE 4
 #define REDIR_GREATER 5
 #define REDIR_LESSER 6
 #define DOUBLE_GREATER 7
 #define DOUBLE_LESSER 8
-#define NEWLINE 9
+#define ENEWLINE 9
 
-int quotes_count;
+typedef struct s_global{   
+    int catch_signal;
+    int quotes_count;
+} t_global;
+
+extern t_global v_global;
 
 typedef struct s_lexer{
     int i;
@@ -62,6 +67,7 @@ typedef struct s_redirection {
 
 typedef struct s_command{
     char **command;
+    bool is_delimter_in_quotes;
     t_redirection *redirections;
     struct s_command *next;
 } t_command;
@@ -81,8 +87,9 @@ typedef struct s_main{
     char *line;
     bool dollar_type;
     bool quotes_type;
-    bool delimiter_type;
 } t_main;
+
+
 
 
 /****************libft Function****************/
@@ -123,7 +130,7 @@ char	*get_dollar_name(char **token, t_main *v_main);
 char *quotes_after_quotes(char *ln, int *index, char type);
 int find_even_quotes(char *ln, int *index, char type);
 void get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main);
-int	get_token_space(t_tokens_list *var, char *ln, int i);
+int	get_token_ESPACE(t_tokens_list *var, char *ln, int i);
 int find_even_quotes(char *ln, int *index, char type);
 int check_quotess(char *str);
 

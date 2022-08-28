@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:32:16 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 18:50:24 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 15:53:15 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*get_available_name(void)
 		tmp = ft_itoa(i);
 		file_name = ft_strjoin(part1, tmp);
         
-        // printf(">>\n%s\n",file_name);
 		free(tmp);
 		if (access(file_name, F_OK))
 			return (file_name);
@@ -62,7 +61,7 @@ char	*traite_herdoc(char *del, t_main *v_main)
 			free(line);
 			return (available_name);
 		}
-		if (search_for_dollar(line))
+		if (search_for_dollar(line) && v_main->cmd->is_delimter_in_quotes)
 			expand_dollar(&line, v_main);
 		ft_putendl_fd(line, fd);
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:37:36 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/26 18:27:43 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 16:07:18 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*treat_quotes1(int *index, char *ln)
 	int i;
 
 	i = *index;
-	quotes_count = 0;
+	v_global.quotes_count = 0;
 
 	if (find_even_quotes(ln, &i, ln[i]))
 	{
@@ -84,16 +84,21 @@ char *set_delimiter_name(char *ln, int *index)
 	while (ln[exp] == ' ')
 		exp++;
 	i = exp;
-	while (ln[exp] != '\0' && (ft_strchr1("|> <", ln[exp])) == NULL)
+	if ((ft_strchr1("|> <", ln[exp])) == NULL)
 	{
-		len++;
-		exp++;
+		while (ln[exp] != '\0' && (ft_strchr1("|> <", ln[exp])) == NULL)
+		{
+			len++;
+			exp++;
+		}
+		temp = malloc(sizeof(char) * len + 1);
+		while (ln[i] && (ft_strchr1("|> <", ln[i])) == NULL)
+			temp[j++] = ln[i++];
+		temp[j] = '\0';
+		*index = i;
 	}
-	temp = malloc(sizeof(char) * len + 1);
-	while (ln[i] && (ft_strchr1("|> <", ln[i])) == NULL)
-		temp[j++] = ln[i++];
-	temp[j] = '\0';
-	*index = i;
+	else
+		return (NULL);
 	return (temp);
 }
 
@@ -105,10 +110,11 @@ void get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 	char *token = NULL;
 	char *temp;
 	
+	(void)v_main;
 	d_name = set_delimiter_name(ln, index);
 	if (check_quotess(d_name))
 	{
-		v_main->delimiter_type = false;
+		v_main->cmd->is_delimter_in_quotes = false;
 		while (d_name[i])
 		{
 			if (d_name[i] == '\'' || d_name[i] == '"')
@@ -122,9 +128,11 @@ void get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 	}
 	else
 	{
-		v_main->delimiter_type = true;
+		if (!d_name)
+			return ;
+		v_main->cmd->is_delimter_in_quotes = true;
 		token = d_name;
 	}
 	add_token_node(var, WORD, token);
-	get_token_space(var, ln, *index);
+	get_token_ESPACE(var, ln, *index);
 }

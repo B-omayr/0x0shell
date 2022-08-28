@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:34:23 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/25 13:39:44 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 15:58:47 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,18 @@ t_env *create_env_list(t_env *h_env, char **env)
     i = 0;
     if (env[0])
     {
-        str = ft_split1(env[0]);
-        h_env = create_first_node(str[0], str[1]);
-        free(str);
-    }
-    while (env[++i])
-    {
-        str = ft_split1(env[i]);
-        add_env_node(h_env, str[0], str[1]);
-        free(str);
+        if (env[0])
+        {
+            str = ft_split1(env[0]);
+            h_env = create_first_node(str[0], str[1]);
+            free(str);
+        }
+        while (env[++i])
+        {
+            str = ft_split1(env[i]);
+            add_env_node(h_env, str[0], str[1]);
+            free(str);
+        }
     }
     return (h_env);
 }
@@ -80,5 +83,7 @@ void ft_initialize_env(t_main *var, int ac, char **av, char **env)
     (void) ac;
     (void) av;
     var->h_env = NULL;
+	rl_catch_signals = 0;
+    var->cmd->is_delimter_in_quotes = false;
     var->h_env = create_env_list(var->h_env, env);
 }

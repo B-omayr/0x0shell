@@ -6,23 +6,23 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:00:17 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/25 16:35:32 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/28 14:31:20 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int delete_space_token(t_tokens_list *head)
+int delete_ESPACE_token(t_tokens_list *head)
 {
 	t_tokens_list	*current;
 	t_tokens_list	*temp;
 
 	current = head;
-	while (current->type != NEWLINE)
+	while (current->type != ENEWLINE)
 	{
-		if (current->next->type == SPACE )
+		if (current->next->type == ESPACE )
 		{
-			if (current->next->next->type == SPACE)
+			if (current->next->next->type == ESPACE)
 			{
 				temp = current->next;
 				current->next = temp->next;
@@ -65,6 +65,6 @@ int	join_word(t_tokens_list *head)
 		else
 			current = current->next;
 	}
-	delete_space_token(head);
+	delete_ESPACE_token(head);
 	return (0);
 }

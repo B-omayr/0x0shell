@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 18:22:37 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/28 16:07:18 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int check_error_none(t_tokens_list *token_none, t_tokens_list *head)
         destroy_list(head);
         ret = 1;
     }   
-    else if (token_none->next->type == NEWLINE)
+    else if (token_none->next->type == ENEWLINE)
     {
         destroy_list(head);
         ret = 1;   
@@ -36,7 +36,7 @@ int check_error_pipe(t_tokens_list *token_pipe, t_tokens_list *head)
     int ret;
 
     ret = 0;
-    if (token_pipe->next->type == PIPE || token_pipe->next->type == NEWLINE)
+    if (token_pipe->next->type == PIPE || token_pipe->next->type == ENEWLINE)
     {
         display_message(token_pipe->next->value);
         destroy_list(head);
@@ -64,7 +64,7 @@ int check_errors(t_tokens_list *current, t_tokens_list *head)
     int ret;
 
     ret = 0;
-    if (quotes_count == 1)
+    if (v_global.quotes_count == 1)
     {
         printf("\e[7;91mThere is a problem came from your quotes\e[0m\n");
         destroy_list(head);

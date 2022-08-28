@@ -6,11 +6,11 @@
 #    By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 16:41:15 by iomayr            #+#    #+#              #
-#    Updated: 2022/08/27 18:57:35 by iomayr           ###   ########.fr        #
+#    Updated: 2022/08/28 14:22:21 by iomayr           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -I $(shell brew --prefix readline)/include
 
 CC = gcc
 
@@ -39,13 +39,15 @@ SRC = lexer/expand_dollar_utiles.c lexer/join_word.c \
 
 OBJ = ${SRC:%.c=%.o}
 
+LIB_PATH = ./libft/libft.a
+
 NAME = minishell
 
 all : ${NAME}
 
 ${NAME} : ${OBJ} includes/minishell.h
 	make -C libft
-	@${CC} ${CFLAGS} ${OBJ} -o ${NAME} -lreadline ./libft/libft.a
+	@${CC} ${CFLAGS} ${OBJ} -o ${NAME} ${LIB_PATH} -L $(shell brew --prefix readline)/lib -lreadline
 	@echo "\033[1;32m##########COMPILED SUCCESSFULY##########\033[0m"
 
 
