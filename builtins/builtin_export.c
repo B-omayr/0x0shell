@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:26:48 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/27 17:43:33 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/29 09:20:50 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ int	validity_of_var_name(char *var_name)
     int var_len;
 	int exit_status = 0;
 	i = 1;
-	puts("\nhere");
-	printf("%s\n", var_name);
 	fflush(stdout);
     var_len = get_lenght(var_name, '=');
-	puts("\nhere");
 	if (!ft_isalpha(var_name[0]) && var_name[0] != '_')
 		return (-1);
 	if (var_name[var_len] == '=' && var_name[var_len - 1] == '+')
 	{
-		// printf("%c", var_name[var_len]);
 		exit_status = 2;
 	}
 	while (var_name[i] && var_name[i] != '=')
@@ -41,8 +37,6 @@ int	validity_of_var_name(char *var_name)
 			return (-1);
 		i++;
 	}
-	printf("exit status: %d\n", exit_status);
-	puts("here2");
 	return (exit_status);
 }
 
@@ -88,7 +82,6 @@ void	export_var(char *variable, t_env **our_env, int to_join)
 				tmp->value = ft_strjoin(tmp->value, value);
 				if(!tmp->value)
 					tmp->value = ft_strdup(value);
-				printf("hahah %s", tmp->value);
 			}
 			else if (tmp->value && to_join == 0)
 			{
@@ -108,7 +101,6 @@ int	built_export(char **cmd_args, t_env **our_env)
 	int		exit_status = 0;
 
 	tmp = *our_env;
-	// printf("ss");
 	if (!cmd_args[1])
 	{
 		while (tmp)

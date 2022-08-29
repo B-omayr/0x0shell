@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:32:51 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/27 09:33:39 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/29 08:52:11 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int get_lenght(char *ln, char c)
     i = 0;
 	if (ln == NULL)
 		return (0);
-    while (ln[i] != c)
+    while (ln[i] && ln[i] != c)
         i++;
     return (i);
 }

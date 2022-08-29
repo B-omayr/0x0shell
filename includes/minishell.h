@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 18:05:06 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/29 09:34:16 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 typedef struct s_global{   
     int catch_signal;
     int quotes_count;
+    int exit_status;
 } t_global;
 
 t_global v_global;

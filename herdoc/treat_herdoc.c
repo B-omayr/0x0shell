@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:32:16 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 15:53:15 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/29 13:06:34 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	*traite_herdoc(char *del, t_main *v_main)
 	while (1)
 	{
 		line = readline("herdoc> ");
-		
 		if (!line || !ft_strncmp(del, line, ft_strlen(del) + 1))
 		{
 			close(fd);
