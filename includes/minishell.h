@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/29 09:34:16 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/29 11:53:05 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 typedef struct s_global{   
     int catch_signal;
     int quotes_count;
-    int exit_status;
 } t_global;
 
 t_global v_global;
@@ -161,6 +160,9 @@ void	export_var(char *variable, t_env **our_env, int to_join);
 int		built_export(char **cmd_args, t_env **our_env);
 void	built_pwd(void);
 int		built_unset(char **cmd_args, t_env **our_env);
+void	built_exit(char **args);
+void	print_exit_error(char *arg, char *reason);
+int     is_it_numeric_args(char *arg);
 t_env	*find_variable(t_env **our_env, char *variable);
 char	*get_variable_name(char *parsed_line);
 char	*get_variable_value(char *parsed_line);
@@ -182,5 +184,6 @@ int     simple_command(t_main *v_main);
 void	excute_cmd(t_main *v_main);
 void	run_multi_cmd(t_main *v_main);
 int	    list_cmd_size(t_command *cmd);
+void    dup_close(int main_fd, int sec_fd, int origin_fd);
 
 #endif

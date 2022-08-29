@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:26:48 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 09:20:50 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/29 08:49:36 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ int	validity_of_var_name(char *var_name)
     int var_len;
 	int exit_status = 0;
 	i = 1;
-	fflush(stdout);
+
     var_len = get_lenght(var_name, '=');
 	if (!ft_isalpha(var_name[0]) && var_name[0] != '_')
 		return (-1);
 	if (var_name[var_len] == '=' && var_name[var_len - 1] == '+')
 	{
+		// printf("%c", var_name[var_len]);
 		exit_status = 2;
 	}
 	while (var_name[i] && var_name[i] != '=')
@@ -46,6 +47,7 @@ void	add_variable_to_env(char *name, char *value, t_env **our_env)
 	t_env	*add_new_var;
 
 	tmp_env = *our_env;
+	printf("name = %s ->>> value = %s\n", name, value);
 	add_new_var = (t_env *)malloc(sizeof(t_env));
 	if (!add_new_var)
 		exit(-1);
@@ -75,21 +77,21 @@ void	export_var(char *variable, t_env **our_env, int to_join)
 	{
 		if (value)
 		{
-			
-
 			if (to_join > 0)
 			{
 				tmp->value = ft_strjoin(tmp->value, value);
 				if(!tmp->value)
 					tmp->value = ft_strdup(value);
+				printf("hahah %s", tmp->value);
 			}
-			else if (tmp->value && to_join == 0)
+			else if (tmp->value)
 			{
 				free(tmp->value);
-				tmp->value = value;
+				tmp->value = ft_strdup(value);
 			}
 		}
 		free(name);
+		
 	}
 	else
 		add_variable_to_env(name, value, our_env);
@@ -101,6 +103,7 @@ int	built_export(char **cmd_args, t_env **our_env)
 	int		exit_status = 0;
 
 	tmp = *our_env;
+	// printf("ss");
 	if (!cmd_args[1])
 	{
 		while (tmp)

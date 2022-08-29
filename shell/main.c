@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/29 12:58:16 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/29 13:40:22 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*tmp;
 
 void ft_sig_handler(int sig)
 {
-	if (sig == 3 && v_global.catch_signal == 1 && ft_strncmp(tmp, "./minishell", 11))
+	if (sig == 3 && v_global.catch_signal == 1 && ft_strncmp(tmp, "minishell", 10))
 	{
 		printf("Quit\n");
 	}
@@ -31,7 +31,7 @@ void ft_sig_handler(int sig)
 			rl_replace_line("", 0);
 			rl_redisplay();
 		}
-		else if (v_global.catch_signal == 1 && ft_strncmp(tmp, "./minishell", 11))
+		else if (v_global.catch_signal == 1 && ft_strncmp(tmp, "minishell", 10))
 		{
 			printf("\n");
 		}

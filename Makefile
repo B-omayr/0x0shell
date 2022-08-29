@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+         #
+#    By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 16:41:15 by iomayr            #+#    #+#              #
-#    Updated: 2022/08/28 14:22:21 by iomayr           ###   ########.fr        #
+#    Updated: 2022/08/29 11:54:30 by youchenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -I $(shell brew --prefix readline)/include
+CFLAGS = -g -Wall -Wextra -Werror -I $(shell brew --prefix readline)/include
 
 CC = gcc
 
@@ -33,9 +33,13 @@ SRC = lexer/expand_dollar_utiles.c lexer/join_word.c \
 		builtins/builtin_pwd.c    \
 		builtins/builtin_unset.c  \
 		builtins/builtins.c       \
+		builtins/built_exit.c       \
 		builtins/handel_env.c     \
 		builtins/utils_for_env.c \
 		excution/find_path.c 		\
+		excution/utils.c 		\
+		excution/excute_multi_cmds.c  		\
+		excution/simple_command.c 		\
 
 OBJ = ${SRC:%.c=%.o}
 

@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:17:42 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/25 16:33:03 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:32:04 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	excute_builtins(char **cmd, t_env **our_env)
 		return (built_unset(&cmd[1], our_env));
 	if (!ft_strncmp(cmd[0], "env", 4))
 		return (built_env(our_env), 0);
-	// if (!ft_strncmp(cmd[0], "exit", 5))
-	// 	return ();
+	if (!ft_strncmp(cmd[0], "exit", 5))
+		return (built_exit(cmd), 0);
 	return (-2);
 }
