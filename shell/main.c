@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/29 13:40:22 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:13:04 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ char	*tmp;
 
 void ft_sig_handler(int sig)
 {
-	if (sig == 3 && v_global.catch_signal == 1 && ft_strncmp(tmp, "minishell", 10))
+	if (sig == 3)
 	{
-		printf("Quit\n");
-	}
-	if (sig == 3 && v_global.catch_signal == 0)
-		signal(SIGQUIT, SIG_IGN);
+		if (v_global.catch_signal ==  1 && ft_strncmp(tmp, "./minishell", 11))
+			printf("Quit : 3\n");
+		else if (v_global.catch_signal == 0)
+			rl_replace_line("", 0);
+	}	
 	if (sig == 2)
 	{
 		if (v_global.catch_signal == 0)
@@ -31,10 +32,8 @@ void ft_sig_handler(int sig)
 			rl_replace_line("", 0);
 			rl_redisplay();
 		}
-		else if (v_global.catch_signal == 1 && ft_strncmp(tmp, "minishell", 10))
-		{
+		else if (v_global.catch_signal == 1 && ft_strncmp(tmp, "./minishell", 11))
 			printf("\n");
-		}
 	}
 }
 
@@ -60,6 +59,7 @@ int main(int ac, char **av, char **env)
 		dup2(IO[1], 1);
 		handle_signal();
 		v_global.catch_signal = 0;
+			printf("---> %d\n", v_global.catch_signal);
 		v_main.line = readline("\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m");
 		tmp = v_main.line;
 		if (v_main.line == NULL)

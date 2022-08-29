@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:43:25 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 12:02:55 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:47:40 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ int simple_command(t_main *v_main)
 		if (is_it_builtin(v_main->cmd->command))
 			return (excute_builtins(v_main->cmd->command, &v_main->h_env));
 		v_global.catch_signal = 1;
+		printf("parent ---> %d\n", v_global.catch_signal);
 		pid = fork();
 		if (pid == 0)
+		{
+			printf("child ---> %d\n", v_global.catch_signal);
 			run_simple_cmd(v_main);  
+			printf("child ---> %d\n", v_global.catch_signal);
+		}
 		waitpid(pid, 0, 0);
 	}
 	return (0);
