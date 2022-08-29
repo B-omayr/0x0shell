@@ -6,11 +6,12 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 12:13:49 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 11:45:19 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:57:44 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 
 
 char	*get_cmd(char **paths, char *cmd)
@@ -18,6 +19,11 @@ char	*get_cmd(char **paths, char *cmd)
 	char	*tmp;
 	char	*command;
 
+	if (!ft_strncmp(cmd, "./", 2))
+	{
+		if (access(cmd, X_OK))
+			return (NULL);
+	}
 	if (!access(cmd, X_OK | F_OK))
 		return (cmd);
 	while (*paths)
