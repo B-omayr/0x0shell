@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/29 11:53:05 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/30 11:27:36 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@
 #define DOUBLE_LESSER 8
 #define ENEWLINE 9
 
-typedef struct s_global{   
+typedef struct s_global{
+    int exist_status;   
     int catch_signal;
     int quotes_count;
+    char *tmp_readline;
 } t_global;
 
 t_global v_global;
@@ -90,7 +92,7 @@ typedef struct s_main{
 } t_main;
 
 
-
+char	*get_next_line(int fd);
 
 /****************libft Function****************/
 
@@ -186,4 +188,9 @@ void	run_multi_cmd(t_main *v_main);
 int	    list_cmd_size(t_command *cmd);
 void    dup_close(int main_fd, int sec_fd, int origin_fd);
 
+
+
+
+//tmp
+void handle_signal(void);
 #endif

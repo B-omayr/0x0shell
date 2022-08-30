@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 15:05:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 16:07:18 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/30 18:34:15 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,11 @@ int find_even_quotes(char *ln, int *index, char type)
 	return (0);
 }
 
-int len_inside_quotes(int i, char *ln, char type, t_main *v_main)
+int len_inside_quotes(int i, char *ln, char type)
 {
 	int j;
 	
 	j = 0;
-	if (type == '"')
-		v_main->quotes_type = true;
-	else
-		v_main->quotes_type = false;
 	while (ln[++i] != type)
 		j++;
 	return (j);
@@ -71,7 +67,7 @@ char *get_inside_quotes(char *ln, int *index, char type, t_main *v_main)
 
 	j = 0;
 	i = *index;
-	len = len_inside_quotes(i, ln, type, v_main);
+	len = len_inside_quotes(i, ln, type);
 	token = malloc(sizeof(char) * len + 1);
 	while (ln[++i] != type)
 		token[j++] = ln[i];

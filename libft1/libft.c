@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 09:34:00 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 15:23:27 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/29 15:50:51 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int check_quotess(char *str)
 	int i;
 
 	i = 0;
-	printf("lala->>");
-	fflush(stdout);
 	while (str && str[i])
 	{
 		if (str[i] == '\'' || str[i] == '"')

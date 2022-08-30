@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:26:48 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 08:49:36 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:29:06 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	export_var(char *variable, t_env **our_env, int to_join)
 				tmp->value = ft_strjoin(tmp->value, value);
 				if(!tmp->value)
 					tmp->value = ft_strdup(value);
-				printf("hahah %s", tmp->value);
 			}
 			else if (tmp->value)
 			{

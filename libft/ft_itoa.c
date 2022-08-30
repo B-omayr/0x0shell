@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:59:10 by youchenn          #+#    #+#             */
-/*   Updated: 2021/11/26 09:59:42 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:44:22 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static	char	*convert_to_string(char *nb_to_str, long nb, int sign)
 char	*ft_itoa(int n)
 {
 	char	*nb_to_str;
-	long	nb;
 	int		num_digit;
+	long	nb;
 	int		sign;
 
 	nb = n;

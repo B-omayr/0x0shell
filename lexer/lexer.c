@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 14:31:20 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/30 18:08:52 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ char *take_word(char *ln, int *index)
 
 char *get_word(char *ln, int *index, t_main *v_main)
 {
-	int	i;
 	char *token;
+	int	i;
 
 	i = *index;
-	token = ft_strdup1("");
-	while (ln[i] != '\n' && (ft_strchr1("|> <", ln[i])) == NULL)
+	token = NULL;
+	while (ln[i] && ln[i] != '\n' && (ft_strchr1("|> <", ln[i])) == NULL)
 	{
 		if (ln[i] == '\'' || ln[i] == '"')
 		{
