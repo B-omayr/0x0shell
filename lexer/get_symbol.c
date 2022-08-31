@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:15:05 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 09:04:16 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 12:50:43 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int get_token_redir_lesser(t_tokens_list *var, char *ln, int i, t_main *v_main)
 		add_token_node(var, DOUBLE_LESSER, token);
 		i++;
 		get_delimitter(var, ln, &i, v_main);
-		
 	}
 	else
 	{

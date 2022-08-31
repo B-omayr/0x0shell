@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 16:07:18 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 12:23:37 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int check_syntax(t_tokens_list *head, t_main *v_main)
 {
     t_tokens_list	*temp;
 	char			*tmp;
+    (void)v_main;
     temp = head;
     while (temp != NULL)
     {

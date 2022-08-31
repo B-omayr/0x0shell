@@ -6,13 +6,13 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:37:36 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 10:22:57 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 12:50:50 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char *get_inside_quotes1(char *ln, int *index, char type)
+char	*get_inside_quotes1(char *ln, int *index, char type)
 {
 	char *token;
 	int len;
@@ -64,24 +64,27 @@ char *set_delimiter_name(char *ln, int *index)
 {
 	char *temp;
 	int len;
-	int exp;
+	int j;
 	int i;
 
-	exp = *index + 1;
+	j = *index + 1;
 	len = 0;
-	while (ln[exp] == ' ')
-		exp++;
-	i = exp;
-	if ((ft_strchr1("|> <", ln[exp])) == NULL)
+	while (ln[j] == ' ')
+		j++;
+	i = j;
+	if (ln[j] && (ft_strchr1("|> <", ln[j])) == NULL)
 	{
-		while (ln[exp++] != '\0' && (ft_strchr1("|> <", ln[exp])) == NULL)
+		while (ln[j] != '\0' && (ft_strchr1("|> <", ln[j])) == NULL)
+		{
 			len++;
+			j++;
+		}
 		temp = malloc(sizeof(char) * len + 1);
-		exp = 0;
+		j = 0;
 		while (ln[i] && (ft_strchr1("|> <", ln[i])) == NULL)
-			temp[exp++] = ln[i++];
-		temp[exp] = '\0';
-		*index = i;
+			temp[j++] = ln[i++];
+		temp[j] = '\0';
+		*index = i - 1;
 	}
 	else
 		return (NULL);
@@ -107,6 +110,7 @@ char	*treat_delimiter(char *d_name)
 		if (ft_strcmp(temp, "") != 0)
 			free(temp);
 	}
+	token[i] = '\0';
 	return (token);
 } 
 
