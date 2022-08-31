@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:43:25 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 17:29:24 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 13:15:28 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ int simple_command(t_main *v_main)
 		v_global.catch_signal = 1;
 		pid = fork();
 		if (pid == 0)
-		{
 			run_simple_cmd(v_main);  
-		}
 		waitpid(pid, 0, 0);
 	}
 	return (0);
