@@ -6,24 +6,24 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:15:05 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 12:50:43 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 16:56:30 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int  get_token_pipe(t_tokens_list *var, int i)
+int	get_token_pipe(t_tokens_list *var, int i)
 {
-	char *token;
+	char	*token;
 
 	token = ft_strdup1("|");
 	add_token_node(var, PIPE, token);
 	return (i);
 }
 
-int get_token_redir_greater(t_tokens_list *var, char *ln, int i)
+int	get_token_redir_greater(t_tokens_list *var, char *ln, int i)
 {
-	char *token;
+	char	*token;
 
 	if (ln[i + 1] == '>')
 	{
@@ -36,13 +36,13 @@ int get_token_redir_greater(t_tokens_list *var, char *ln, int i)
 		token = ft_strdup1(">");
 		add_token_node(var, REDIR_GREATER, token);
 	}
-		
 	return (i);
 }
 
-int	get_token_ESPACE(t_tokens_list *var, char *ln, int i)
+int	get_token_space(t_tokens_list *var, char *ln, int i)
 {
-	char *token;
+	char	*token;
+
 	while (ln[i] == ' ' || ln[i] == '\t')
 		i++;
 	token = ft_strdup1(" ");
@@ -50,9 +50,9 @@ int	get_token_ESPACE(t_tokens_list *var, char *ln, int i)
 	return (i);
 }
 
-int get_token_redir_lesser(t_tokens_list *var, char *ln, int i, t_main *v_main)
+int	get_token_redir_lesser(t_tokens_list *var, char *ln, int i, t_main *v_main)
 {
-	char *token;
+	char	*token;
 
 	if (ln[i + 1] == '<')
 	{
@@ -69,9 +69,9 @@ int get_token_redir_lesser(t_tokens_list *var, char *ln, int i, t_main *v_main)
 	return (i);
 }
 
-void    get_symbol(t_tokens_list *var, char *ln, int *index, t_main *v_main)
+void	get_symbol(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 {
-	int i;
+	int	i;
 
 	i = *index;
 	if (ln[i] == '|')
@@ -81,6 +81,6 @@ void    get_symbol(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 	if (ln[i] == '<')
 		i = get_token_redir_lesser(var, ln, i, v_main) + 1;
 	if (ln[i] == ' ' || ln[i] == '\t')
-		i = get_token_ESPACE(var, ln, i);
+		i = get_token_space(var, ln, i);
 	*index = i;
-} 
+}

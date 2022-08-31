@@ -6,35 +6,34 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 09:34:00 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 10:16:53 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 17:48:17 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-char *ft_strchr1(char *str, char c)
+char	*ft_strchr1(char *str, char c)
 {
-    int i;
-    int len;
+	int	i;
+	int	len;
 
-    i = 0;
-    len = get_lenght(str, '\0');
-    if (c == '\0')
-        return (&str[len]);
-    while (str[i])
-    {
-        if (str[i] == c)
-            return (&str[i]);
-        i++;
-    }
-    return (NULL);
+	i = 0;
+	len = get_lenght(str, '\0');
+	if (c == '\0')
+		return (&str[len]);
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
+	}
+	return (NULL);
 }
 
 int	lenght_of_word(char *ln, int *index)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = *index;
 	len = 0;
@@ -69,23 +68,23 @@ char	*ft_strjoin1(char *s1, char *s2)
 	while (s2[i])
 		str[r++] = s2[i++];
 	str[r] = 0;
-    free(s1);
+	free(s1);
 	return (str);
 }
 
-int len_inside_quotes1(int i, char *ln, char type)
+int	len_inside_quotes1(int i, char *ln, char type)
 {
-	int j;
-	
+	int	j;
+
 	j = 0;
 	while (ln[++i] != type)
 		j++;
 	return (j);
 }
 
-int check_quotess(char *str)
+int	check_quotess(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str && str[i])

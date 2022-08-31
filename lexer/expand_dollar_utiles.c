@@ -6,16 +6,16 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:57:32 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/30 18:38:17 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 16:38:17 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void check_dollar_even(char **token, int *index, t_main *v_main)
+void	check_dollar_even(char **token, int *index, t_main *v_main)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	i = *index;
 	count = 0;
@@ -29,12 +29,12 @@ void check_dollar_even(char **token, int *index, t_main *v_main)
 
 char	*get_dollar_name(char **token, t_main *v_main)
 {
-	char *d_name;
-	int len;
-	bool x;
-	int i;
-	int j;
-	
+	char	*d_name;
+	int		len;
+	bool	x;
+	int		i;
+	int		j;
+
 	i = 0;
 	j = 0;
 	x = true;
@@ -45,33 +45,33 @@ char	*get_dollar_name(char **token, t_main *v_main)
 		if ((*token)[i] == '$')
 		{
 			check_dollar_even(token, &i, v_main);
-			get_after_dollar(token, &i, &d_name);					
+			get_after_dollar(token, &i, &d_name);
 			x = false;
-		}		
+		}
 		i++;
 	}
 	return (d_name);
 }
 
-int search_for_dollar(char *token)
+int	search_for_dollar(char *token)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (token[i] != '\0')
 	{
 		if (token[i] == '$')
-			return (1);	
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int dollar_name_len(char **token)
+int	dollar_name_len(char **token)
 {
-	bool x;
-	int len;
-	int i;
+	bool	x;
+	int		len;
+	int		i;
 
 	len = 0;
 	i = 0;
@@ -84,17 +84,17 @@ int dollar_name_len(char **token)
 				i++;
 			while (alpha_numeric((*token)[i++]) == 1)
 				len++;
-		}	
+		}
 		x = false;
 		i++;
 	}
 	return (len);
 }
 
-void	get_after_dollar(char **token, int	*index, char **d_name)
+void	get_after_dollar(char **token, int *index, char **d_name)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = *index;
 	j = 0;

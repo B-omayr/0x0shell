@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:37:36 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 12:50:50 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 16:51:50 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*get_inside_quotes1(char *ln, int *index, char type)
 {
-	char *token;
-	int len;
-	int i;
-	int j;
+	char	*token;
+	int		len;
+	int		i;
+	int		j;
 
 	j = 0;
 	i = *index;
@@ -33,12 +33,11 @@ char	*get_inside_quotes1(char *ln, int *index, char type)
 
 char	*treat_quotes1(int *index, char *ln)
 {
-	char *temp;
-	int i;
+	char	*temp;
+	int		i;
 
 	i = *index;
-	v_global.quotes_count = 0;
-
+	g_global.quotes_count = 0;
 	if (find_even_quotes(ln, &i, ln[i]))
 	{
 		if (quotes_after_quotes(ln, &i, ln[i]))
@@ -60,12 +59,12 @@ char	*treat_quotes1(int *index, char *ln)
 	return (ft_strdup1(""));
 }
 
-char *set_delimiter_name(char *ln, int *index)
+char	*set_delimiter_name(char *ln, int *index)
 {
-	char *temp;
-	int len;
-	int j;
-	int i;
+	char	*temp;
+	int		len;
+	int		j;
+	int		i;
 
 	j = *index + 1;
 	len = 0;
@@ -74,30 +73,26 @@ char *set_delimiter_name(char *ln, int *index)
 	i = j;
 	if (ln[j] && (ft_strchr1("|> <", ln[j])) == NULL)
 	{
-		while (ln[j] != '\0' && (ft_strchr1("|> <", ln[j])) == NULL)
-		{
+		while (ln[j++] != '\0' && (ft_strchr1("|> <", ln[j])) == NULL)
 			len++;
-			j++;
-		}
 		temp = malloc(sizeof(char) * len + 1);
 		j = 0;
 		while (ln[i] && (ft_strchr1("|> <", ln[i])) == NULL)
 			temp[j++] = ln[i++];
 		temp[j] = '\0';
-		*index = i - 1;
+	*index = i - 1;
 	}
 	else
 		return (NULL);
 	return (temp);
 }
 
-
 char	*treat_delimiter(char *d_name)
 {
-	char *token;
-	char *temp;
-	int i;
-	
+	char	*token;
+	char	*temp;
+	int		i;
+
 	i = 0;
 	token = NULL;
 	while (d_name[i])
@@ -112,13 +107,13 @@ char	*treat_delimiter(char *d_name)
 	}
 	token[i] = '\0';
 	return (token);
-} 
+}
 
-void get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main)
+void	get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 {
-	char *d_name;
-	char *token;
-	
+	char	*d_name;
+	char	*token;
+
 	d_name = set_delimiter_name(ln, index);
 	if (check_quotess(d_name))
 	{

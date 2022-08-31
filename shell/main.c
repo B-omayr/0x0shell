@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/30 16:58:28 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 16:08:29 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void ft_sig_handler(int sig)
 {
 	if (sig == 3)
 	{
-		if (v_global.catch_signal ==  1 && ft_strncmp(v_global.tmp_readline, "./minishell", 11))
+		if (g_global.catch_signal ==  1 && ft_strncmp(g_global.tmp_readline, "./minishell", 11))
 			printf("Quit : 3\n");
-		else if (v_global.catch_signal == 0)
+		else if (g_global.catch_signal == 0)
 			rl_replace_line("", 0);
 	}	
 	if (sig == 2)
 	{
-		if (v_global.catch_signal == 0)
+		if (g_global.catch_signal == 0)
 		{
 			printf("\n");
 			rl_on_new_line();
 			rl_replace_line("", 0);
 			rl_redisplay();
 		}
-		else if (v_global.catch_signal == 1 && ft_strncmp(v_global.tmp_readline, "./minishell", 11))
+		else if (g_global.catch_signal == 1 && ft_strncmp(g_global.tmp_readline, "./minishell", 11))
 			printf("\n");
 	}
 }
@@ -56,9 +56,9 @@ int main(int ac, char **av, char **env)
 		dup2(IO[0], 0);
 		dup2(IO[1], 1);
 		handle_signal();
-		v_global.catch_signal = 0;
+		g_global.catch_signal = 0;
 		v_main.line = readline("\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m");
-		v_global.tmp_readline = v_main.line;
+		g_global.tmp_readline = v_main.line;
 		if (v_main.line == NULL)
 			return (printf("\033[17C\033[1A exit\n"), 0);
 		add_history(v_main.line);
@@ -73,7 +73,7 @@ int main(int ac, char **av, char **env)
 			else if (list_cmd_size(v_main.cmd) > 1) 
 				run_multi_cmd(&v_main);
 		}
-		v_global.quotes_count = 0;
+		g_global.quotes_count = 0;
 		free(v_main.line);
 	}
 	close(IO[0]);

@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:34:23 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/30 16:58:07 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 16:08:29 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ void ft_initialize_env(t_main *var, int ac, char **av, char **env)
     var->h_env = NULL;
 	rl_catch_signals = 0;
     var->cmd->is_delimter_in_quotes = false;
-    v_global.exist_status = 0;
+    g_global.exist_status = 0;
     var->h_env = create_env_list(var->h_env, env);
 }

@@ -6,13 +6,13 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 12:52:37 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 17:08:32 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void add_token_node(t_tokens_list *var, int type, char *value)
+void	add_token_node(t_tokens_list *var, int type, char *value)
 {
 	t_tokens_list	*temp;
 
@@ -25,9 +25,9 @@ void add_token_node(t_tokens_list *var, int type, char *value)
 	temp->next->next = NULL;
 }
 
-t_tokens_list *initialize_lst()
+t_tokens_list	*initialize_lst(void)
 {
-	t_tokens_list *first_token;
+	t_tokens_list	*first_token;
 
 	first_token = malloc(sizeof(t_tokens_list));
 	first_token->type = NONE;
@@ -36,12 +36,12 @@ t_tokens_list *initialize_lst()
 	return (first_token);
 }
 
-char *take_word(char *ln, int *index)
+char	*take_word(char *ln, int *index)
 {
-	char *temp;
-	int len;
-	int i;
-	int j;
+	char	*temp;
+	int		len;
+	int		i;
+	int		j;
 
 	i = *index;
 	j = 0;
@@ -60,10 +60,10 @@ char *take_word(char *ln, int *index)
 	return (temp);
 }
 
-char *get_word(char *ln, int *index, t_main *v_main)
+char	*get_word(char *ln, int *index, t_main *v_main)
 {
-	char *token;
-	int	i;
+	char	*token;
+	int		i;
 
 	i = *index;
 	token = NULL;
@@ -87,9 +87,9 @@ char *get_word(char *ln, int *index, t_main *v_main)
 	return (token);
 }
 
-t_tokens_list *ft_lexer(char *ln, t_main *v_main)
+t_tokens_list	*ft_lexer(char *ln, t_main *v_main)
 {
-	t_lexer	lexer;
+	t_lexer			lexer;
 	t_tokens_list	*var;
 
 	lexer.i = 0;
@@ -100,11 +100,11 @@ t_tokens_list *ft_lexer(char *ln, t_main *v_main)
 		lexer.temp = lexer.token;
 		if (lexer.i == 0)
 			while (ln[lexer.i] == '\t' || ln[lexer.i] == ' ')
-				lexer.i++; 
-		if (ln[lexer.i] == '|' || ln[lexer.i] == '>' || ln[lexer.i] == '<' 
+				lexer.i++;
+		if (ln[lexer.i] == '|' || ln[lexer.i] == '>' || ln[lexer.i] == '<'
 			|| ln[lexer.i] == ' ' || ln[lexer.i] == '\t')
 			get_symbol(var, ln, &lexer.i, v_main);
-		free(lexer.temp);
+		free (lexer.temp);
 		if (ln[lexer.i] && (ft_strchr1("|> <", ln[lexer.i])) == NULL)
 			lexer.token = get_word(ln, &lexer.i, v_main);
 		if (ft_strcmp(lexer.token, "") != 0)
@@ -112,5 +112,6 @@ t_tokens_list *ft_lexer(char *ln, t_main *v_main)
 	}
 	add_token_node(var, ENEWLINE, ft_strdup1("ENEWLINE"));
 	join_word(var);
+	delete_space_token(var);
 	return (var);
 }

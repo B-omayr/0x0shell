@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:43:25 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 17:29:24 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 16:08:29 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int simple_command(t_main *v_main)
 	{
 		if (is_it_builtin(v_main->cmd->command))
 			return (excute_builtins(v_main->cmd->command, &v_main->h_env));
-		v_global.catch_signal = 1;
+		g_global.catch_signal = 1;
 		pid = fork();
 		if (pid == 0)
 		{

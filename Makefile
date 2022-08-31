@@ -6,7 +6,7 @@
 #    By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 16:41:15 by iomayr            #+#    #+#              #
-#    Updated: 2022/08/30 10:26:45 by iomayr           ###   ########.fr        #
+#    Updated: 2022/08/31 15:10:51 by iomayr           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ CFLAGS = -g -Wall -Wextra -Werror -I $(shell brew --prefix readline)/include
 CC = gcc
 
 SRC = lexer/expand_dollar_utiles.c lexer/join_word.c \
+		lexer/get_delimiter.c lexer/expand_dollar_utiles1.c\
 		lexer/quotes.c lexer/expand_dollar.c \
 		lexer/lexer.c lexer/get_symbol.c \
-		lexer/get_delimiter.c \
 		syntax/syntax_error.c syntax/error_message.c \
 		parse/parse.c parse/parse_utiles.c\
 		libft1/libft1.c libft1/libft.c\
@@ -38,8 +38,8 @@ SRC = lexer/expand_dollar_utiles.c lexer/join_word.c \
 		builtins/utils_for_env.c \
 		excution/find_path.c 		\
 		excution/utils.c 		\
-		excution/excute_multi_cmds.c  		\
-		excution/simple_command.c 		\
+		excution/excute_multi_cmds.c \
+		excution/simple_command.c \
 
 OBJ = ${SRC:%.c=%.o}
 

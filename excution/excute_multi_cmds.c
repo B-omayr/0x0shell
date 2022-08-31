@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   excute_multi_cmds.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:45:30 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 11:52:43 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/08/31 16:08:29 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	run_multi_cmd(t_main *v_main)
 	{
 		if (v_main->cmd->next)
 			pipe(fd);
-		v_global.catch_signal = 1;
+		g_global.catch_signal = 1;
 		pid = fork();
 		if (pid == 0)
 		{

@@ -6,13 +6,13 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:00:17 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 14:31:20 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 17:02:46 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int delete_ESPACE_token(t_tokens_list *head)
+int	delete_space_token(t_tokens_list *head)
 {
 	t_tokens_list	*current;
 	t_tokens_list	*temp;
@@ -20,7 +20,7 @@ int delete_ESPACE_token(t_tokens_list *head)
 	current = head;
 	while (current->type != ENEWLINE)
 	{
-		if (current->next->type == ESPACE )
+		if (current->next->type == ESPACE)
 		{
 			if (current->next->next->type == ESPACE)
 			{
@@ -29,10 +29,10 @@ int delete_ESPACE_token(t_tokens_list *head)
 				free(temp->value);
 				free(temp);
 			}
-				temp = current->next;
-				current->next = temp->next;
-				free(temp->value);
-				free(temp);
+			temp = current->next;
+			current->next = temp->next;
+			free(temp->value);
+			free(temp);
 		}
 		current = current->next;
 	}
@@ -43,18 +43,17 @@ int	join_word(t_tokens_list *head)
 {
 	t_tokens_list	*current;
 	t_tokens_list	*temp;
-	char *str;
-	int len;
-	
+	char			*str;
+	int				len;
+
 	current = head;
 	while (current != NULL)
 	{
 		if (current->type == WORD && current->next->type == WORD)
 		{
-			len = get_lenght(current->value, '\0') + get_lenght(current->next->value, '\0') + 1;
+			len = get_lenght(current->value, '\0')
+				+ get_lenght(current->next->value, '\0') + 1;
 			str = malloc(sizeof(char) * len + 1);
-			if (!str)
-				return (0);
 			str = ft_strjoin1(current->value, current->next->value);
 			temp = current->next;
 			current->value = str;
@@ -63,8 +62,7 @@ int	join_word(t_tokens_list *head)
 			free(temp);
 		}
 		else
-			current = current->next;
+		current = current->next;
 	}
-	delete_ESPACE_token(head);
 	return (0);
 }
