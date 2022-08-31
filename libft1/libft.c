@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 09:34:00 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/29 15:50:51 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 10:16:53 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,16 @@ char	*ft_strjoin1(char *s1, char *s2)
 	str[r] = 0;
     free(s1);
 	return (str);
+}
+
+int len_inside_quotes1(int i, char *ln, char type)
+{
+	int j;
+	
+	j = 0;
+	while (ln[++i] != type)
+		j++;
+	return (j);
 }
 
 int check_quotess(char *str)

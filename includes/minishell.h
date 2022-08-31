@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/30 11:27:36 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 10:17:12 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ char	*get_dollar_name(char **token, t_main *v_main);
 char *quotes_after_quotes(char *ln, int *index, char type);
 int find_even_quotes(char *ln, int *index, char type);
 void get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main);
+int len_inside_quotes1(int i, char *ln, char type);
 int	get_token_ESPACE(t_tokens_list *var, char *ln, int i);
 int find_even_quotes(char *ln, int *index, char type);
 int check_quotess(char *str);
@@ -152,6 +153,7 @@ void get_cmd_arg(t_parse *var);
 char	*traite_herdoc(char *del, t_main *v_main);
 
 /****************builtins functions****************/
+
 int		built_cd(char *path, t_env **our_env);
 int     option_n_enbaled(char **cmd_args);
 int		built_echo(char **cmd_args);
@@ -173,12 +175,16 @@ void	update_env_pwd(t_env **our_env, char *new_value);
 char	**convert_env_to_matrix(t_env *our_env);
 int	    is_it_builtin(char **cmd);
 int	    excute_builtins(char **cmd, t_env **our_env);
+
 /****************redirections****************/
+
 int     out_redirection(char *file_path);
 int     in_redirection(char *file_path);
 int	    append_redirection(char *file_path);
 int     handel_redirections(t_command *cmd);
+
 /****************excution****************/
+
 char	*get_cmd(char **paths, char *cmd);
 char	*find_cmd_path(t_env **our_env, char *cmd);
 void    run_simple_cmd(t_main *main);

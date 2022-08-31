@@ -6,21 +6,11 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:37:36 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/30 18:57:58 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/08/31 10:22:57 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int len_inside_quotes1(int i, char *ln, char type)
-{
-	int j;
-	
-	j = 0;
-	while (ln[++i] != type)
-		j++;
-	return (j);
-}
 
 char *get_inside_quotes1(char *ln, int *index, char type)
 {
@@ -76,25 +66,21 @@ char *set_delimiter_name(char *ln, int *index)
 	int len;
 	int exp;
 	int i;
-	int j;
 
 	exp = *index + 1;
-	j = 0;
 	len = 0;
 	while (ln[exp] == ' ')
 		exp++;
 	i = exp;
 	if ((ft_strchr1("|> <", ln[exp])) == NULL)
 	{
-		while (ln[exp] != '\0' && (ft_strchr1("|> <", ln[exp])) == NULL)
-		{
+		while (ln[exp++] != '\0' && (ft_strchr1("|> <", ln[exp])) == NULL)
 			len++;
-			exp++;
-		}
 		temp = malloc(sizeof(char) * len + 1);
+		exp = 0;
 		while (ln[i] && (ft_strchr1("|> <", ln[i])) == NULL)
-			temp[j++] = ln[i++];
-		temp[j] = '\0';
+			temp[exp++] = ln[i++];
+		temp[exp] = '\0';
 		*index = i;
 	}
 	else
@@ -103,28 +89,37 @@ char *set_delimiter_name(char *ln, int *index)
 }
 
 
+char	*treat_delimiter(char *d_name)
+{
+	char *token;
+	char *temp;
+	int i;
+	
+	i = 0;
+	token = NULL;
+	while (d_name[i])
+	{
+		if (d_name[i] == '\'' || d_name[i] == '"')
+			temp = treat_quotes1(&i, d_name);
+		else
+			temp = take_word(d_name, &i);
+		token = ft_strjoin1(token, temp);
+		if (ft_strcmp(temp, "") != 0)
+			free(temp);
+	}
+	return (token);
+} 
+
 void get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 {
-	int i = 0;
 	char *d_name;
-	char *token = NULL;
-	char *temp;
+	char *token;
 	
-	(void)v_main;
 	d_name = set_delimiter_name(ln, index);
 	if (check_quotess(d_name))
 	{
 		v_main->cmd->is_delimter_in_quotes = false;
-		while (d_name[i])
-		{
-			if (d_name[i] == '\'' || d_name[i] == '"')
-				temp = treat_quotes1(&i, d_name);
-			else
-				temp = take_word(d_name, &i);
-			token = ft_strjoin1(token, temp);
-			if (ft_strcmp(temp, "") != 0)
-				free(temp);
-		}
+		token = treat_delimiter(d_name);
 	}
 	else
 	{
