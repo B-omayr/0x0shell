@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:32:51 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 18:06:46 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 13:06:09 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ char	**ft_split1(char *env)
 
 	i = 0;
 	str = malloc(sizeof(char **) * 2);
+	collect_libft_readline(str);
 	str[0] = malloc(sizeof(char) * get_lenght(env, '=') + 1);
+	collect_libft_readline(str[0]);
 	str[1] = malloc(sizeof(char) * get_lenght(env, '\0') + 1);
+	collect_libft_readline(str[1]);
 	while (env[i] != '=')
 	{
 		str[0][i] = env[i];
@@ -72,6 +75,7 @@ char	*ft_strdup1(char *str)
 	i = -1;
 	len = get_lenght(str, '\0');
 	ptr = malloc(sizeof(char) * len + 1);
+	collect_libft_readline(ptr);
 	while (str[++i] != '\0')
 		ptr[i] = str[i];
 	ptr[i] = '\0';

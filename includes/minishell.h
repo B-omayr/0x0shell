@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 16:16:30 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 12:08:35 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,21 @@
 # define DOUBLE_LESSER	8
 # define ENEWLINE		9
 
+typedef struct s_free{
+	void *to_free;
+	struct s_free *next;
+} t_free;
+
 typedef struct s_global{
 	int		exist_status;
 	int		catch_signal;
 	int		quotes_count;
 	char	*tmp_readline;
+	t_free	*free_collect;
 }	t_global;
 
 t_global	g_global;
+
 
 typedef struct s_lexer{
 	int		i;
@@ -98,6 +105,7 @@ char			*ft_strchr1(char *str, char c);
 int				ft_strcmp(char *str, char *ptr);
 int				lenght_of_word(char *ln, int *index);
 char			*ft_strjoin1(char *s1, char *s2);
+void			*ft_malloc(size_t size);
 
 /*****************env Function*****************/
 
@@ -130,7 +138,7 @@ int				find_even_quotes(char *ln, int *index, char type);
 void			get_delimitter(t_tokens_list *var, char *ln,
 					int *index, t_main *v_main);
 int				len_inside_quotes1(int i, char *ln, char type);
-int				get_token_ESPACE(t_tokens_list *var, char *ln, int i);
+int				get_token_space(t_tokens_list *var, char *ln, int i);
 int				find_even_quotes(char *ln, int *index, char type);
 int				check_quotess(char *str);
 char			*take_last_part_here(char **token, int *i);
@@ -192,5 +200,6 @@ char			*get_cmd(char **paths, char *cmd);
 char			*find_cmd_path(t_env **our_env, char *cmd);
 int				simple_command(t_main *v_main);
 int				list_cmd_size(t_command *cmd);
+void			collect_libft_readline(void *to_collect);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 09:34:00 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 17:48:17 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:44:16 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char	*ft_strjoin1(char *s1, char *s2)
 		s2 = ft_strdup1("");
 	len = get_lenght(s1, '\0') + get_lenght(s2, '\0') + 1;
 	str = malloc(sizeof(char) * len + 1);
+	collect_libft_readline(str);
 	if (!str)
 		return (NULL);
 	while (s1[i])

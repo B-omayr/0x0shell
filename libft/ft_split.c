@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:11:11 by youchenn          #+#    #+#             */
-/*   Updated: 2021/11/26 09:58:29 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:05:23 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	**ft_split(char const *s, char c)
 	tab = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!tab)
 		return (NULL);
+	collect_libft_readline(tab);
 	while (s[++i] != '\0')
 	{
 		if (s[i] != c)
@@ -80,6 +81,7 @@ char	**ft_split(char const *s, char c)
 			tab[j] = ft_substr(s, i, last_index(&s[i], c));
 			if (!tab[j])
 				return (free_tab(tab));
+			// collect_libft_readline(tab[j]);
 			i = i + last_index(&s[i], c) - 1;
 			j++;
 		}

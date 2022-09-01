@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 14:16:52 by youchenn          #+#    #+#             */
-/*   Updated: 2021/11/26 09:55:17 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:55:57 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*ft_strdup(const char *s1)
 	ps1 = (char *)malloc(ft_strlen(s1) + 1);
 	if (!ps1)
 		return (NULL);
+	collect_libft_readline(ps1);
 	while (s1[i])
 	{
 		ps1[i] = s1[i];

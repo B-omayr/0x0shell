@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 14:49:52 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/25 09:56:40 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:09:57 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+#include "../includes/minishell.h"
 
 typedef struct s_stack
 {
@@ -34,6 +35,7 @@ typedef struct s_stack
 // int ft_strcmp(char *str, char *ptr);
 // char **ft_split1(char *env);
 
+// collect_libft_readline(ptr);
 t_stack	*ft_lstnew(int content);
 void	ft_lstadd_back(t_stack **alst, t_stack *new);
 void	ft_lstclear(t_stack **lst);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar_utiles1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:08:15 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 16:40:27 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 12:05:29 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*last_part_here(char **token, int *index)
 	j = 0;
 	while ((*token)[i++])
 		len++;
-	res = malloc(sizeof(char) * len + 1);
+	res = ft_malloc(sizeof(char) * len + 1);
 	i = *index;
 	while ((*token)[i])
 		res[j++] = (*token)[i++];

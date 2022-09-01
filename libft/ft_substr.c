@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 14:42:53 by youchenn          #+#    #+#             */
-/*   Updated: 2021/11/26 09:56:00 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:58:34 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substring = (char *)malloc(len + 1);
 	if (!(substring))
 		return (NULL);
+	collect_libft_readline(substring);
 	while (i < len)
 	{
 		substring[i] = s[i + start];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   excute_multi_cmds.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:45:30 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/31 16:08:29 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:55:55 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ void	run_multi_cmd(t_main *v_main)
 	int pid;
 	int fd[2];
 	int cmds_nbr;
-/* trait case of existing file ND EXCUTABLE .*/
+	t_command *tmp;
+
+
 	cmds_nbr = list_cmd_size(v_main->cmd);
+	tmp = v_main->cmd;
 	while (v_main->cmd)
 	{
 		if (v_main->cmd->next)
@@ -58,4 +61,5 @@ void	run_multi_cmd(t_main *v_main)
 		waitpid(-1, NULL, 0);
 		cmds_nbr--;
 	}
+	v_main->cmd = tmp;
 }

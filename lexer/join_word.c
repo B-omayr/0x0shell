@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:00:17 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 17:02:46 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:47:28 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	delete_space_token(t_tokens_list *head)
 			{
 				temp = current->next;
 				current->next = temp->next;
-				free(temp->value);
-				free(temp);
+				//free(temp->value);
+				//free(temp);
 			}
 			temp = current->next;
 			current->next = temp->next;
-			free(temp->value);
-			free(temp);
+			//free(temp->value);
+			//free(temp);
 		}
 		current = current->next;
 	}
@@ -53,13 +53,13 @@ int	join_word(t_tokens_list *head)
 		{
 			len = get_lenght(current->value, '\0')
 				+ get_lenght(current->next->value, '\0') + 1;
-			str = malloc(sizeof(char) * len + 1);
+			str = ft_malloc(sizeof(char) * len + 1);
 			str = ft_strjoin1(current->value, current->next->value);
 			temp = current->next;
 			current->value = str;
 			current->next = temp->next;
-			free(temp->value);
-			free(temp);
+			////free(temp->value);
+			//free(temp);
 		}
 		else
 		current = current->next;

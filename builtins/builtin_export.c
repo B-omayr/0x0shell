@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:26:48 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 17:29:06 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:45:10 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	add_variable_to_env(char *name, char *value, t_env **our_env)
 
 	tmp_env = *our_env;
 	printf("name = %s ->>> value = %s\n", name, value);
-	add_new_var = (t_env *)malloc(sizeof(t_env));
+	add_new_var = (t_env *)ft_malloc(sizeof(t_env));
 	if (!add_new_var)
-		exit(-1);
+		return ;
 	add_new_var->name = name;
 	add_new_var->value = value;
 	add_new_var->next = NULL;
@@ -85,11 +85,11 @@ void	export_var(char *variable, t_env **our_env, int to_join)
 			}
 			else if (tmp->value)
 			{
-				free(tmp->value);
+				//free(tmp->value);
 				tmp->value = ft_strdup(value);
 			}
 		}
-		free(name);
+		//free(name);
 		
 	}
 	else

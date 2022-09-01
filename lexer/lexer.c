@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 17:08:32 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:35:09 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_token_node(t_tokens_list *var, int type, char *value)
 	temp = var;
 	while (temp->next != NULL)
 		temp = temp->next;
-	temp->next = malloc(sizeof(t_tokens_list));
+	temp->next = ft_malloc(sizeof(t_tokens_list));
 	temp->next->type = type;
 	temp->next->value = value;
 	temp->next->next = NULL;
@@ -29,7 +29,7 @@ t_tokens_list	*initialize_lst(void)
 {
 	t_tokens_list	*first_token;
 
-	first_token = malloc(sizeof(t_tokens_list));
+	first_token = ft_malloc(sizeof(t_tokens_list));
 	first_token->type = NONE;
 	first_token->value = ft_strdup1("NONE");
 	first_token->next = NULL;
@@ -52,7 +52,7 @@ char	*take_word(char *ln, int *index)
 		i++;
 	}
 	i = *index;
-	temp = malloc(sizeof(char) * len + 1);
+	temp = ft_malloc(sizeof(char) * len + 1);
 	while (ln[i] && (ft_strchr1("|> \"<'", ln[i])) == NULL)
 		temp[j++] = ln[i++];
 	temp[j] = '\0';
@@ -104,7 +104,7 @@ t_tokens_list	*ft_lexer(char *ln, t_main *v_main)
 		if (ln[lexer.i] == '|' || ln[lexer.i] == '>' || ln[lexer.i] == '<'
 			|| ln[lexer.i] == ' ' || ln[lexer.i] == '\t')
 			get_symbol(var, ln, &lexer.i, v_main);
-		free (lexer.temp);
+		// free (lexer.temp);
 		if (ln[lexer.i] && (ft_strchr1("|> <", ln[lexer.i])) == NULL)
 			lexer.token = get_word(ln, &lexer.i, v_main);
 		if (ft_strcmp(lexer.token, "") != 0)

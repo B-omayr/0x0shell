@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 15:05:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 17:12:51 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 13:04:47 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*get_inside_quotes(char *ln, int *index, char type, t_main *v_main)
 	j = 0;
 	i = *index;
 	len = len_inside_quotes(i, ln, type);
-	token = malloc(sizeof(char) * len + 1);
+	token = ft_malloc(sizeof(char) * len + 1);
 	while (ln[++i] != type)
 		token[j++] = ln[i];
 	i++;

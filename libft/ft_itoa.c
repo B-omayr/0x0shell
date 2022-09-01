@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:59:10 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/30 18:44:22 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 11:54:05 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char	*ft_itoa(int n)
 	nb_to_str = (char *)malloc(num_digit + sign + 1);
 	if (!nb_to_str)
 		return (NULL);
+	collect_libft_readline(nb_to_str);
 	if (n < 0)
 		nb_to_str[num_digit] = '-';
 	nb_to_str = convert_to_string(nb_to_str, nb, sign);

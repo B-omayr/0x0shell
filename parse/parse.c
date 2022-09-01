@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 10:46:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/28 14:31:20 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:48:33 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_command *first_cmd(char **cmd_arg, t_redirection *redirections)
     int i;
 
     i = 0;
-    first_cmd = malloc(sizeof(t_command));
+    first_cmd = ft_malloc(sizeof(t_command));
     if (cmd_arg != NULL)
     {
         size = arg_size(cmd_arg);
-        first_cmd->command = malloc(sizeof(char *) * size + 1);
+        first_cmd->command = ft_malloc(sizeof(char *) * size + 1);
         while (cmd_arg[i] != NULL)
         {
             first_cmd->command[i] = ft_strdup1(cmd_arg[i]);
@@ -46,12 +46,12 @@ void add_cmd(t_command *cmd, char **cmd_arg, t_redirection *redirections)
     new_cmd = cmd;
     while (new_cmd->next != NULL)
         new_cmd = new_cmd->next;
-    new_cmd->next = malloc(sizeof(t_command));
+    new_cmd->next = ft_malloc(sizeof(t_command));
     new_cmd->next->command = NULL;
     if (cmd_arg != NULL)
     {
         size = arg_size(cmd_arg);
-        new_cmd->next->command = malloc(sizeof(char *) * size + 1);
+        new_cmd->next->command =ft_malloc(sizeof(char *) * size + 1);
         while (cmd_arg[i] != NULL)
         {
             new_cmd->next->command[i] = ft_strdup1(cmd_arg[i]);
@@ -71,18 +71,18 @@ void set_cmd(t_parse *var)
     if (var->cmd == NULL)
     {
         var->cmd = first_cmd(var->cmd_arg, var->redirections);
-        while (i < var->size)
-            free(var->cmd_arg[i++]);
-        free (var->cmd_arg);
+        // while (i < var->size)
+        //     free(var->cmd_arg[i++]);
+        // free (var->cmd_arg);
         var->cmd_arg = NULL;
         var->redirections = NULL;
     }
     else
     {
         add_cmd(var->cmd, var->cmd_arg, var->redirections);
-        while (i < var->size)
-            free(var->cmd_arg[i++]);
-        free (var->cmd_arg);
+        // while (i < var->size)
+        //     free(var->cmd_arg[i++]);
+        // free (var->cmd_arg);
         var->cmd_arg = NULL;
         var->redirections = NULL;
     }
@@ -93,7 +93,7 @@ void    set_redirection(t_parse *var, t_tokens_list *token)
     t_redirection *redirection;
     t_redirection *temp;
 
-    redirection = malloc(sizeof(t_redirection));
+    redirection = ft_malloc(sizeof(t_redirection));
     redirection->type = token->type;
     redirection->f_name = token->next->value; // validate the syntax before this
     redirection->next = NULL;

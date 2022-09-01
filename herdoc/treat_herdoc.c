@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_herdoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:32:16 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/30 10:13:26 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:46:08 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ char	*get_available_name(void)
 		tmp = ft_itoa(i);
 		file_name = ft_strjoin(part1, tmp);
         
-		free(tmp);
+		//free(tmp);
 		if (access(file_name, F_OK))
 			return (file_name);
-		free(file_name);
+		//free(file_name);
 		i += 1;
 		if (i > 2147483647)
 		{
 			tmp = part1;
 			part1 = ft_strjoin(part1, "_");
-			free(tmp);
+			//free(tmp);
 			i = 0;
 		}
 	}
@@ -57,13 +57,13 @@ char	*traite_herdoc(char *del, t_main *v_main)
 		if (!line || !ft_strncmp(del, line, ft_strlen(del) + 1))
 		{
 			close(fd);
-			free(line);
+			//free(line);
 			return (available_name);
 		}
 		if (search_for_dollar(line) && v_main->cmd->is_delimter_in_quotes)
 			expand_dollar(&line, v_main);
 		ft_putendl_fd(line, fd);
-		free(line);
+		//free(line);
 	}
 	if (close(fd) < 0)
 		return (NULL);

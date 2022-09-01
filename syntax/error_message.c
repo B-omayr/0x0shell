@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_message.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:07:57 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 18:20:45 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:49:33 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	display_message(char *value)
 
 void	destroy_list(t_tokens_list *list)
 {
-	t_tokens_list	*temp;
-
-	while (list != NULL)
-	{
-		temp = list;
-		list = list->next;
-		free(temp->value);
-		free(temp);
-		temp = NULL;
-	}
-	free(list);
-	list = NULL;
+	// t_tokens_list	*temp;
+	(void) list;
+	// while (list != NULL)
+	// {
+	// 	temp = list;
+	// 	list = list->next;
+	// 	free(temp->value);
+	// 	free(temp);
+	// 	temp = NULL;
+	// }
+	// // free(list);
+	// list = NULL;
 }

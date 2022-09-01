@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar_utiles.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:57:32 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 16:38:17 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 12:04:28 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*get_dollar_name(char **token, t_main *v_main)
 	j = 0;
 	x = true;
 	len = dollar_name_len(token);
-	d_name = malloc(sizeof(char) * len + 1);
+	d_name = ft_malloc(sizeof(char) * len + 1);
 	while ((*token)[i] != '\0' && x == true)
 	{
 		if ((*token)[i] == '$')

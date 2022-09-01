@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:25:23 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 08:47:52 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:45:13 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_variable_name(char *parsed_line)
 	else if (!var_name)
 		var_name = ft_substr(parsed_line, 0, ft_strlen(parsed_line) + 1);
 	if (!var_name)
-		exit(-1);
+		return (NULL);
 	// printf("%s\n", var_name);
 	return (var_name);
 }
@@ -57,7 +57,7 @@ char	*get_variable_value(char *parsed_line)
 	if (var_value)
 		var_value = ft_substr(parsed_line, var_value - parsed_line + 1, ft_strlen(var_value) + 1);
 	if (!var_value)
-		exit(-1);
+		return (0);
 	return (var_value);
 }
 
@@ -74,9 +74,9 @@ void	delete_var_env(t_env **our_env, t_env *var_to_delete)
 			tmp = tmp->next;
 		tmp->next = var_to_delete->next;
 	}
-	free(var_to_delete->name);
-	free(var_to_delete->value);
-	free(var_to_delete);
+	//free(var_to_delete->name);
+	//free(var_to_delete->value);
+	//free(var_to_delete);
 }
 
 void	update_env_pwd(t_env **our_env, char *new_value)

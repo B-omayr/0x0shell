@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 16:08:29 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:52:28 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,80 @@ void handle_signal(void)
 	signal(SIGINT, ft_sig_handler);
 }
 
+t_free	*ft_lstnew1(void *content)
+{
+	t_free	*node;
+
+	node = (t_free *)malloc(sizeof(t_free));
+	if (!node)
+		return (NULL);
+	node->to_free = content;
+	node->next = NULL;
+	return (node);
+}
+
+t_free	*ft_lstlast1(t_free *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+void	ft_lstadd_back1(t_free **collecter, t_free *new)
+{
+	if (!collecter || !new)
+		return ; // error
+	new->next = *collecter;
+	*collecter = new;
+}
+
+
+void	*ft_malloc(size_t size)
+{
+	void *head;
+
+	head = malloc(size);
+	ft_lstadd_back1(&g_global.free_collect, ft_lstnew1(head));
+	return (head);
+}
+
+void	collect_libft_readline(void *to_collect)
+{
+	ft_lstadd_back1(&g_global.free_collect, ft_lstnew1(to_collect));
+}
+
+
+void	free_list(t_free* list) {
+    if (!list)
+        return ;
+    free_list(list->next);
+    free(list->to_free);
+	free(list);
+}
+
+
+// void	free_list(t_free *list)
+// {
+// 	while(list)
+// 	{
+// 		printf("laaa\n");
+// 		free(list->to_free);
+// 		printf("%p\n", list->to_free);
+// 		list = list->next;
+// 	}
+// }
+
+
 int main(int ac, char **av, char **env)
 {
 	t_main v_main;
-	t_lexer *lexer;
 	int     IO[2];
 
 	IO[0] = dup(0);
 	IO[1] = dup(1);
-	lexer = NULL;
+
 	ft_initialize_env(&v_main, ac, av, env);
 	while (1)
 	{
@@ -59,8 +124,9 @@ int main(int ac, char **av, char **env)
 		g_global.catch_signal = 0;
 		v_main.line = readline("\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m");
 		g_global.tmp_readline = v_main.line;
+		collect_libft_readline(v_main.line);
 		if (v_main.line == NULL)
-			return (printf("\033[17C\033[1A exit\n"), 0);
+			break ;
 		add_history(v_main.line);
 		v_main.list = ft_lexer(v_main.line, &v_main);
 		if(v_main.list == NULL)
@@ -74,8 +140,9 @@ int main(int ac, char **av, char **env)
 				run_multi_cmd(&v_main);
 		}
 		g_global.quotes_count = 0;
-		free(v_main.line);
+		// free(v_main.line);
 	}
+	free_list(g_global.free_collect);
 	close(IO[0]);
 	close(IO[1]);
 	return (0);

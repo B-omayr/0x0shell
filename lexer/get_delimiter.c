@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_delimiter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:37:36 by iomayr            #+#    #+#             */
-/*   Updated: 2022/08/31 16:51:50 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/01 15:46:48 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_inside_quotes1(char *ln, int *index, char type)
 	j = 0;
 	i = *index;
 	len = len_inside_quotes1(i, ln, type);
-	token = malloc(sizeof(char) * len + 1);
+	token = ft_malloc(sizeof(char) * len + 1);
 	while (ln[++i] != type)
 		token[j++] = ln[i];
 	i++;
@@ -75,7 +75,7 @@ char	*set_delimiter_name(char *ln, int *index)
 	{
 		while (ln[j++] != '\0' && (ft_strchr1("|> <", ln[j])) == NULL)
 			len++;
-		temp = malloc(sizeof(char) * len + 1);
+		temp = ft_malloc(sizeof(char) * len + 1);
 		j = 0;
 		while (ln[i] && (ft_strchr1("|> <", ln[i])) == NULL)
 			temp[j++] = ln[i++];
@@ -103,7 +103,8 @@ char	*treat_delimiter(char *d_name)
 			temp = take_word(d_name, &i);
 		token = ft_strjoin1(token, temp);
 		if (ft_strcmp(temp, "") != 0)
-			free(temp);
+			;
+			//free(temp);
 	}
 	token[i] = '\0';
 	return (token);
@@ -128,5 +129,5 @@ void	get_delimitter(t_tokens_list *var, char *ln, int *index, t_main *v_main)
 		token = d_name;
 	}
 	add_token_node(var, WORD, token);
-	get_token_ESPACE(var, ln, *index);
+	get_token_space(var, ln, *index);
 }
