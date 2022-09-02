@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:00:17 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:47:28 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:23:14 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,9 @@ int	delete_space_token(t_tokens_list *head)
 			{
 				temp = current->next;
 				current->next = temp->next;
-				//free(temp->value);
-				//free(temp);
 			}
 			temp = current->next;
 			current->next = temp->next;
-			//free(temp->value);
-			//free(temp);
 		}
 		current = current->next;
 	}
@@ -58,8 +54,6 @@ int	join_word(t_tokens_list *head)
 			temp = current->next;
 			current->value = str;
 			current->next = temp->next;
-			////free(temp->value);
-			//free(temp);
 		}
 		else
 		current = current->next;

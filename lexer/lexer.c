@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:35:09 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:23:28 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ t_tokens_list	*ft_lexer(char *ln, t_main *v_main)
 		if (ln[lexer.i] == '|' || ln[lexer.i] == '>' || ln[lexer.i] == '<'
 			|| ln[lexer.i] == ' ' || ln[lexer.i] == '\t')
 			get_symbol(var, ln, &lexer.i, v_main);
-		// free (lexer.temp);
 		if (ln[lexer.i] && (ft_strchr1("|> <", ln[lexer.i])) == NULL)
 			lexer.token = get_word(ln, &lexer.i, v_main);
 		if (ft_strcmp(lexer.token, "") != 0)

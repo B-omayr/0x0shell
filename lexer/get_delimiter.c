@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_delimiter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:37:36 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:46:48 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:22:50 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,6 @@ char	*treat_delimiter(char *d_name)
 		else
 			temp = take_word(d_name, &i);
 		token = ft_strjoin1(token, temp);
-		if (ft_strcmp(temp, "") != 0)
-			;
-			//free(temp);
 	}
 	token[i] = '\0';
 	return (token);

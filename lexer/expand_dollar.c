@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:23:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:46:10 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:22:11 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*join_token(char **token, char *d_value)
 	res = ft_strjoin1(temp, d_value);
 	temp = get_last_part(token);
 	ret = ft_strjoin1(res, temp);
-	//free(temp);
 	return (ret);
 }
 
@@ -75,7 +74,6 @@ int	expand_dollar(char **token, t_main *v_main)
 		if (!ft_strcmp(d_name, temp->name))
 		{
 			set_value(temp->value, d_name, token, v_main);
-			//free(d_name);
 			return (0);
 		}
 		else if (temp->next == NULL && (ft_strcmp(d_name, temp->name)) != 0)
@@ -84,7 +82,6 @@ int	expand_dollar(char **token, t_main *v_main)
 				*token = join_token(token, d_name);
 			else
 				*token = join_token(token, NULL);
-			//free(d_name);
 		}
 		temp = temp->next;
 	}

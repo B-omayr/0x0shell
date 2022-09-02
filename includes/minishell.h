@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 15:13:32 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:11:29 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@
 # define ENEWLINE		9
 
 typedef struct s_free{
-	void *to_free;
-	struct s_free *next;
-} t_free;
+	void			*to_free;
+	struct s_free	*next;
+}	t_free;
 
 typedef struct s_global{
 	int		exist_status;
@@ -47,7 +47,6 @@ typedef struct s_global{
 }	t_global;
 
 t_global	g_global;
-
 
 typedef struct s_lexer{
 	int		i;
@@ -148,7 +147,6 @@ int				delete_space_token(t_tokens_list *head);
 /****************syntax Function***************/
 
 int				check_syntax(t_tokens_list *var, t_main *v_main);
-void			destroy_list(t_tokens_list *list);
 void			display_message(char *value);
 
 /****************parse Function****************/
