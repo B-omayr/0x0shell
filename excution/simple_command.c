@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:43:25 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/01 15:10:02 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:30:20 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void    run_simple_cmd(t_main *main)
 	path = find_cmd_path(&main->h_env, main->cmd->command[0]);
 	env = convert_env_to_matrix(main->h_env);
 	execve(path, main->cmd->command, env);
-	perror(main->cmd->command[0]);
-	exit(1);
+	perror("lala");
+	exit(g_global.exist_status);
 }
 
 int simple_command(t_main *v_main)
@@ -40,5 +40,5 @@ int simple_command(t_main *v_main)
 			run_simple_cmd(v_main);  
 		waitpid(pid, 0, 0);
 	}
-	return (0);
+	return (g_global.exist_status);
 }

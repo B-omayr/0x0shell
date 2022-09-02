@@ -6,20 +6,30 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:45:30 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/01 15:55:55 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:43:08 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+// void	print_exit_error(char *arg, char *reason)
+// {
+// 	ft_putstr_fd("minishell: ", 1);
+// 	ft_putstr_fd(": ", 1);
+// 	ft_putstr_fd(arg, 1);
+// 	ft_putendl_fd(reason, 1);	
+// }
 
 void	excute_cmd(t_main *v_main)
 {
 	char *path;
 	char **env;
 	handel_redirections(v_main->cmd);
+	unlink("/tmp/.here_doc0");
 	path = find_cmd_path(&v_main->h_env, v_main->cmd->command[0]);
 	env = convert_env_to_matrix(v_main->h_env);
-	execve(path, v_main->cmd->command, env);
+	g_global.exist_status = execve(path, v_main->cmd->command, env);
+	// printf("")
 }
 
 void    dup_close(int main_fd, int sec_fd, int origin_fd)
@@ -56,10 +66,12 @@ void	run_multi_cmd(t_main *v_main)
             dup_close(fd[0], fd[1], 0);
 		v_main->cmd = v_main->cmd->next;
 	}
+	v_main->cmd = tmp;
+	printf("%p, | \n", tmp->command);
+	fflush(stdout);
 	while (cmds_nbr)
 	{
 		waitpid(-1, NULL, 0);
 		cmds_nbr--;
 	}
-	v_main->cmd = tmp;
 }

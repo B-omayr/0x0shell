@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 09:34:00 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:44:16 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 10:16:09 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_strjoin1(char *s1, char *s2)
 	while (s2[i])
 		str[r++] = s2[i++];
 	str[r] = 0;
-	free(s1);
+	// free(s1);
 	return (str);
 }
 

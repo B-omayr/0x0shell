@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 15:38:07 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 12:06:35 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:29:33 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void malloc_cmd_arg(t_parse *var)
 
     i = 0;
     token = var->current_token;
-    var->cmd_arg = ft_malloc(sizeof(char *) * var->size + 1);
+    var->cmd_arg = ft_malloc(sizeof(char *) * (var->size + 1));
     while (i < var->size)
     {
         if (token->type == WORD)

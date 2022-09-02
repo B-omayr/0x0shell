@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:52:28 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:37:54 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,14 @@ int main(int ac, char **av, char **env)
 			return (0);
 		if (!check_syntax(v_main.list, &v_main))
 		{
+			printf("cmd = %p \n cmcd->cmd = %p \n  \n", v_main.cmd, v_main.cmd->command);
 			v_main.cmd = ft_parse(v_main.list, v_main.h_env);
+			printf("cmd = %p \n cmcd->cmd = %p \n  \n", v_main.cmd, v_main.cmd->command);
 			if (list_cmd_size(v_main.cmd) == 1)
 				simple_command(&v_main);
 			else if (list_cmd_size(v_main.cmd) > 1) 
 				run_multi_cmd(&v_main);
+			// printf("%s\n", v_main.cmd->command[0]);
 		}
 		g_global.quotes_count = 0;
 		// free(v_main.line);

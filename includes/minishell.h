@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 12:08:35 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:29:19 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ void			display_message(char *value);
 t_command		*ft_parse(t_tokens_list *tokens_list, t_env *h_env);
 void			initialize_var(t_parse *var, t_tokens_list *tokens_list);
 int				arg_size(char **cmd_arg);
-int				ft_strcmp_int(int x, int y);
 void			get_cmd_arg(t_parse *var);
 char			*traite_herdoc(char *del, t_main *v_main);
 

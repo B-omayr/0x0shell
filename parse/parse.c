@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 10:46:11 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:48:33 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:29:59 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_command *first_cmd(char **cmd_arg, t_redirection *redirections)
         }
         first_cmd->command[i] = NULL;
     }
+    
     first_cmd->redirections = redirections;
     first_cmd->next = NULL;
     return (first_cmd);
@@ -71,18 +72,14 @@ void set_cmd(t_parse *var)
     if (var->cmd == NULL)
     {
         var->cmd = first_cmd(var->cmd_arg, var->redirections);
-        // while (i < var->size)
-        //     free(var->cmd_arg[i++]);
-        // free (var->cmd_arg);
+        var->cmd->command = NULL;
         var->cmd_arg = NULL;
         var->redirections = NULL;
     }
     else
     {
+        
         add_cmd(var->cmd, var->cmd_arg, var->redirections);
-        // while (i < var->size)
-        //     free(var->cmd_arg[i++]);
-        // free (var->cmd_arg);
         var->cmd_arg = NULL;
         var->redirections = NULL;
     }
