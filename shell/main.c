@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 15:22:24 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:03:31 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void ft_sig_handler(int sig)
 		}
 		else if (g_global.catch_signal == 1 && ft_strncmp(g_global.tmp_readline, "./minishell", 11))
 			printf("\n");
+		g_global.exist_status = 128 + sig;
 	}
 }
 
@@ -39,6 +40,21 @@ void handle_signal(void)
 {
 	signal(SIGQUIT, ft_sig_handler);
 	signal(SIGINT, ft_sig_handler);
+}
+
+static void	handle_sigint_heredoc(int signum)
+{
+	if (signum != SIGINT)
+		return ;
+	close(0);
+	g_global.skip = 1;
+	return ;
+}
+
+void	heredoc_signal(void)
+{
+	signal(SIGINT, handle_sigint_heredoc);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 t_free	*ft_lstnew1(void *content)
@@ -106,7 +122,6 @@ void	free_list(t_free* list) {
 // 	}
 // }
 
-
 int main(int ac, char **av, char **env)
 {
 	t_main v_main;
@@ -118,6 +133,7 @@ int main(int ac, char **av, char **env)
 	ft_initialize_env(&v_main, ac, av, env);
 	while (1)
 	{
+		g_global.skip = 0;
 		dup2(IO[0], 0);
 		dup2(IO[1], 1);
 		handle_signal();

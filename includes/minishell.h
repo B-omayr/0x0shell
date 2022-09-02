@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 17:11:29 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/02 17:32:43 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include	<stdlib.h>
 # include	<stdbool.h>
 # include	<fcntl.h>
+# include	<sys/ioctl.h>
 # include	<readline/readline.h>
 # include	<readline/history.h>
 # include	"../libft/libft.h"
@@ -43,6 +44,7 @@ typedef struct s_global{
 	int		catch_signal;
 	int		quotes_count;
 	char	*tmp_readline;
+	int		skip;
 	t_free	*free_collect;
 }	t_global;
 
@@ -200,5 +202,6 @@ char			*find_cmd_path(t_env **our_env, char *cmd);
 int				simple_command(t_main *v_main);
 int				list_cmd_size(t_command *cmd);
 void			collect_libft_readline(void *to_collect);
+void			heredoc_signal(void);
 
 #endif
