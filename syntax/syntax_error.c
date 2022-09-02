@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:49:52 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:51:41 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	check_syntax(t_tokens_list *head, t_main *v_main)
 		{
 			tmp = temp->next->value;
 			temp->next->value = traite_herdoc(temp->next->value, v_main);
+			if (g_global.skip)
+				return (1);
 			// free(tmp);
 			temp = temp->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:32:16 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/01 15:46:08 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:44:04 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ char	*traite_herdoc(char *del, t_main *v_main)
 	fd = open(available_name, O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (fd < 0)
 		return (NULL);
-	while (1)
+	heredoc_signal();
+	while (!g_global.skip)
 	{
 		line = readline("herdoc> ");
 		if (!line || !ft_strncmp(del, line, ft_strlen(del) + 1))
