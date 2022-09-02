@@ -6,11 +6,11 @@
 #    By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 16:41:15 by iomayr            #+#    #+#              #
-#    Updated: 2022/09/02 14:19:39 by iomayr           ###   ########.fr        #
+#    Updated: 2022/08/31 15:10:51 by iomayr           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -g -Wall -Wextra -Werror 
+CFLAGS = -g -Wall -Wextra -Werror -I $(shell brew --prefix readline)/include
 
 CC = gcc
 
@@ -47,17 +47,13 @@ LIB_PATH = ./libft/libft.a
 
 NAME = minishell
 
-INC = includes/minishell.h
-
 all : ${NAME}
 
-${NAME} : ${OBJ} ${INC}
+${NAME} : ${OBJ} includes/minishell.h
 	make -C libft
 	@${CC} ${CFLAGS} ${OBJ} -o ${NAME} ${LIB_PATH} -L $(shell brew --prefix readline)/lib -lreadline
 	@echo "\033[1;32m##########COMPILED SUCCESSFULY##########\033[0m"
 
-%.o:%.c ${INC}
-	@${CC} ${CFLAGS} -I $(shell brew --prefix readline)/include -c $< -o $@ 
 
 clean:
 	make fclean -C libft
