@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 11:29:19 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:13:32 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_redirection {
 typedef struct s_command{
 	char				**command;
 	bool				is_delimter_in_quotes;
+	pid_t				pid;
 	t_redirection		*redirections;
 	struct s_command	*next;
 }	t_command;
@@ -155,6 +156,7 @@ void			display_message(char *value);
 t_command		*ft_parse(t_tokens_list *tokens_list, t_env *h_env);
 void			initialize_var(t_parse *var, t_tokens_list *tokens_list);
 int				arg_size(char **cmd_arg);
+int				ft_strcmp_int(int x, int y);
 void			get_cmd_arg(t_parse *var);
 char			*traite_herdoc(char *del, t_main *v_main);
 
@@ -191,7 +193,7 @@ int				handel_redirections(t_command *cmd);
 
 /****************excution****************/
 
-void			excute_cmd(t_main *v_main);
+void			excute_cmd(t_main *v_main, t_command *cmd);
 void			dup_close(int main_fd, int sec_fd, int origin_fd);
 void			run_simple_cmd(t_main *main);
 void			run_multi_cmd(t_main *v_main);

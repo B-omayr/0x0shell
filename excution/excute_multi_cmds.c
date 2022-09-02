@@ -6,30 +6,20 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:45:30 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/02 12:43:08 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:20:48 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// void	print_exit_error(char *arg, char *reason)
-// {
-// 	ft_putstr_fd("minishell: ", 1);
-// 	ft_putstr_fd(": ", 1);
-// 	ft_putstr_fd(arg, 1);
-// 	ft_putendl_fd(reason, 1);	
-// }
-
-void	excute_cmd(t_main *v_main)
+void	excute_cmd(t_main *v_main, t_command *cmd)
 {
 	char *path;
 	char **env;
-	handel_redirections(v_main->cmd);
-	unlink("/tmp/.here_doc0");
-	path = find_cmd_path(&v_main->h_env, v_main->cmd->command[0]);
+	handel_redirections(cmd);
+	path = find_cmd_path(&v_main->h_env, cmd->command[0]);
 	env = convert_env_to_matrix(v_main->h_env);
-	g_global.exist_status = execve(path, v_main->cmd->command, env);
-	// printf("")
+	execve(path, cmd->command, env);
 }
 
 void    dup_close(int main_fd, int sec_fd, int origin_fd)
@@ -42,36 +32,37 @@ void    dup_close(int main_fd, int sec_fd, int origin_fd)
 
 void	run_multi_cmd(t_main *v_main)
 {
-	int pid;
 	int fd[2];
-	int cmds_nbr;
-	t_command *tmp;
+	t_command *head;
+	int	status;
 
-
-	cmds_nbr = list_cmd_size(v_main->cmd);
-	tmp = v_main->cmd;
-	while (v_main->cmd)
+	head = v_main->cmd;
+	while (head)
 	{
-		if (v_main->cmd->next)
+		if (head->next)
 			pipe(fd);
 		g_global.catch_signal = 1;
-		pid = fork();
-		if (pid == 0)
+		head->pid = fork();
+		if (head->pid == 0)
 		{
-			if (v_main->cmd->next)
+			if (head->next)
                 dup_close(fd[1], fd[0], 1);
-			excute_cmd(v_main);
+			excute_cmd(v_main, head);
 		}
 		else
             dup_close(fd[0], fd[1], 0);
-		v_main->cmd = v_main->cmd->next;
+		head = head->next;
 	}
-	v_main->cmd = tmp;
-	printf("%p, | \n", tmp->command);
-	fflush(stdout);
-	while (cmds_nbr)
+	head = v_main->cmd;
+	while (head)
 	{
-		waitpid(-1, NULL, 0);
-		cmds_nbr--;
+		waitpid(head->pid, &status, 0);
+		if (WIFEXITED(status))
+			g_global.exist_status = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			g_global.exist_status = WTERMSIG(status) + 128;
+		else
+			g_global.exist_status = 1;
+		head = head->next;
 	}
 }

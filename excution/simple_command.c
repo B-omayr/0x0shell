@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:43:25 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/02 12:30:20 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:20:41 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void    run_simple_cmd(t_main *main)
 	path = find_cmd_path(&main->h_env, main->cmd->command[0]);
 	env = convert_env_to_matrix(main->h_env);
 	execve(path, main->cmd->command, env);
-	perror("lala");
-	exit(g_global.exist_status);
+	perror(main->cmd->command[0]);
+	exit(1);
 }
 
 int simple_command(t_main *v_main)
 {
 	int pid;
+	int status;
 
 	if (handel_redirections(v_main->cmd) < 0)
         return (1);
@@ -38,7 +39,13 @@ int simple_command(t_main *v_main)
 		pid = fork();
 		if (pid == 0)
 			run_simple_cmd(v_main);  
-		waitpid(pid, 0, 0);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			g_global.exist_status = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			g_global.exist_status = WTERMSIG(status) + 128;
+		else
+			g_global.exist_status = 1;
 	}
-	return (g_global.exist_status);
+	return (0);
 }
