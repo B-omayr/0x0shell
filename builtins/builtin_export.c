@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:26:48 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/01 15:45:10 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 12:46:27 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	validity_of_var_name(char *var_name)
 	if (!ft_isalpha(var_name[0]) && var_name[0] != '_')
 		return (-1);
 	if (var_name[var_len] == '=' && var_name[var_len - 1] == '+')
-	{
-		// printf("%c", var_name[var_len]);
 		exit_status = 2;
-	}
 	while (var_name[i] && var_name[i] != '=')
 	{
 		if (var_name[i] == '+' && var_name[i + 1] == '=')
@@ -85,28 +82,36 @@ void	export_var(char *variable, t_env **our_env, int to_join)
 			}
 			else if (tmp->value)
 			{
-				//free(tmp->value);
 				tmp->value = ft_strdup(value);
 			}
 		}
-		//free(name);
 		
 	}
 	else
 		add_variable_to_env(name, value, our_env);
 }
 
+void	print_error(char *arg, char *cmd, char *reason)
+{
+	ft_putstr_fd("minishell: ", 1);
+	ft_putstr_fd(cmd, 1);
+	ft_putstr_fd(": ", 1);
+	ft_putstr_fd(arg, 1);
+	ft_putendl_fd(reason, 1);
+}
+
 int	built_export(char **cmd_args, t_env **our_env)
 {
 	t_env *tmp;
-	int		exit_status = 0;
+	int i;
 
 	tmp = *our_env;
-	// printf("ss");
+	i = 0;
 	if (!cmd_args[1])
 	{
 		while (tmp)
 		{
+			ft_putstr_fd("declare -x ", 1);
 			ft_putstr_fd(tmp->name, 1);
 			if (tmp->value)
 			{
@@ -118,21 +123,15 @@ int	built_export(char **cmd_args, t_env **our_env)
 			tmp = tmp->next;
 		}
 	}
-	cmd_args++;
-	while (*cmd_args)
+	while (cmd_args[++i])
 	{
-		if (validity_of_var_name(*cmd_args) < 0)
+		if (validity_of_var_name(cmd_args[i]) < 0)
 		{
-			exit_status = -1;
+			g_global.exist_status = 1;
+			print_error(cmd_args[i], cmd_args[0], ": not a valid identifier");
 		}
 		else
-		{
-			// printf("dada");
-			// printf("%d", validity_of_var_name())
-			export_var(*cmd_args, our_env, validity_of_var_name(*cmd_args));
-			// printf("here\n");
-		}
-		cmd_args++;
+			export_var(cmd_args[i], our_env, validity_of_var_name(cmd_args[i]));
 	}
-	return (exit_status);
+	return (g_global.exist_status);
 }

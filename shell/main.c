@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 17:03:31 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:50:59 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,6 @@ void	free_list(t_free* list) {
 	free(list);
 }
 
-
-// void	free_list(t_free *list)
-// {
-// 	while(list)
-// 	{
-// 		printf("laaa\n");
-// 		free(list->to_free);
-// 		printf("%p\n", list->to_free);
-// 		list = list->next;
-// 	}
-// }
-
 int main(int ac, char **av, char **env)
 {
 	t_main v_main;
@@ -157,7 +145,6 @@ int main(int ac, char **av, char **env)
 				run_multi_cmd(&v_main);
 		}
 		g_global.quotes_count = 0;
-		// free(v_main.line);
 	}
 	free_list(g_global.free_collect);
 	close(IO[0]);

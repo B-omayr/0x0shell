@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:32:14 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/25 13:37:05 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 16:16:43 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,11 @@ int	handel_redirections(t_command *cmd)
 	{
 		if (tmp->type == REDIR_LESSER
 			|| tmp->type == DOUBLE_LESSER)
+		{
 			status = in_redirection(tmp->f_name);
+			if (tmp->type == DOUBLE_LESSER)
+				unlink(tmp->f_name);
+		}
 		else if (tmp->type == DOUBLE_GREATER)
 			status = append_redirection(tmp->f_name);
 		else if (tmp->type == REDIR_GREATER)

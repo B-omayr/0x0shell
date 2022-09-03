@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 16:43:49 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 12:48:34 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,6 @@ int				list_cmd_size(t_command *cmd);
 void			collect_libft_readline(void *to_collect);
 
 void	heredoc_signal(void);
+void	print_error(char *arg, char *cmd, char *reason);
 
 #endif

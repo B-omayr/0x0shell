@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:29:31 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/31 13:34:17 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 14:46:32 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ int built_cd(char *path, t_env **our_env)
 		if (!home_pwd)
 		{
 			perror("OLDPATH is unset");
-			return (-1);
+			g_global.exist_status = 1;
+			return (1);
 		}
 		if (chdir(home_pwd->value) < 0)
-			return (-1);
+		{
+			g_global.exist_status = 1;
+			return (g_global.exist_status);
+		}
 		update_env_pwd(our_env, getcwd(NULL, 0));
 		return (0);
 	}
@@ -39,10 +43,14 @@ int built_cd(char *path, t_env **our_env)
 		if (!oldpwd)
 		{
 			perror("OLDPATH is unset");
-			return (-1);
+			g_global.exist_status = 1;
+			return (1);
 		}
 		if (chdir(oldpwd->value) < 0)
-			return (-1);
+		{
+			g_global.exist_status = 1;
+			return (1);
+		}
 		update_env_pwd(our_env, getcwd(NULL, 0));
 		built_pwd();
 		return (0);
@@ -50,8 +58,9 @@ int built_cd(char *path, t_env **our_env)
 	if (chdir(path) < 0)
 	{
 		printf("bash: cd: %s: No such file or directory\n", path);
-		return (-1);
+		g_global.exist_status = 1;
+		update_env_pwd(our_env, getcwd(NULL, 0));
+		return (1);
 	}
-	update_env_pwd(our_env, getcwd(NULL, 0));
 	return (0);
 }

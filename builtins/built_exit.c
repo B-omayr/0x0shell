@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:46:00 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/29 11:37:52 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 12:40:19 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	print_exit_error(char *arg, char *reason)
 	ft_putstr_fd("exit: ", 1);
 	ft_putstr_fd(arg, 1);
 	ft_putendl_fd(reason, 1);
-	
 }
 
 void	built_exit(char **args)

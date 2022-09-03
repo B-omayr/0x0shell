@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 16:51:41 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:04:12 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	check_error_none(t_tokens_list *token_none, t_tokens_list *head)
 	}
 	else if (token_none->next->type == ENEWLINE)
 	{
-		destroy_list(head);
 		ret = 1;
 	}
 	return (ret);
