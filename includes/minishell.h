@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 17:12:59 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 22:10:18 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_global{
 	int		catch_signal;
 	int		quotes_count;
 	char	*tmp_readline;
+	int		shel_level;
 	int		skip;
 	t_free	*free_collect;
 }	t_global;
@@ -168,6 +169,7 @@ void			built_env(t_env **our_env);
 int				validity_of_var_name(char *var_name);
 void			add_variable_to_env(char *name, char *value, t_env **our_env);
 void			export_var(char *variable, t_env **our_env, int to_join);
+void			export_print(t_env *tmp);
 int				built_export(char **cmd_args, t_env **our_env);
 void			built_pwd(void);
 int				built_unset(char **cmd_args, t_env **our_env);
@@ -202,5 +204,6 @@ int				simple_command(t_main *v_main);
 int				list_cmd_size(t_command *cmd);
 void			collect_libft_readline(void *to_collect);
 void			heredoc_signal(void);
+void			print_error(char *arg, char *cmd, char *reason);
 
 #endif

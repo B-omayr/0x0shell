@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:46:00 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 12:40:19 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:50:06 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	is_it_numeric_args(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(arg[i])
+	while (arg[i])
 	{
 		if (!ft_isdigit(arg[i]))
 			return (-1);
@@ -37,7 +37,7 @@ void	print_exit_error(char *arg, char *reason)
 
 void	built_exit(char **args)
 {
-	int exit_status;
+	int	exit_status;
 
 	exit_status = 255;
 	if (args[1])
@@ -56,10 +56,9 @@ void	built_exit(char **args)
 		else if (!is_it_numeric_args(args[1]) && args[2])
 			print_exit_error(args[1], " too many arguments");
 	}
-	else 
+	else
 	{
 		ft_putendl_fd("exit", 1);
 		exit(0);
 	}
 }
-

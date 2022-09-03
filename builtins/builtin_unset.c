@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:30:39 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 12:55:28 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:41:54 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	built_unset(char **cmd_args, t_env **our_env)
 	while (cmd_args && *cmd_args)
 	{
 
-		if (validity_of_var_name(*cmd_args) == -1)
+		if (validity_of_var_name(*cmd_args) == 1)
 		{
 			print_error(*cmd_args, "unset", ": not a valid identifier");
 			g_global.exist_status = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_herdoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:32:16 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 17:12:47 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 20:45:31 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,9 @@ char	*get_available_name(void)
 	{
 		tmp = ft_itoa(i);
 		file_name = ft_strjoin(part1, tmp);
-        
-		//free(tmp);
 		if (access(file_name, F_OK))
 			return (file_name);
-		//free(file_name);
 		i += 1;
-		if (i > 2147483647)
-		{
-			tmp = part1;
-			part1 = ft_strjoin(part1, "_");
-			//free(tmp);
-			i = 0;
-		}
 	}
 }
 
@@ -66,7 +56,5 @@ char	*traite_herdoc(char *del, t_main *v_main)
 		ft_putendl_fd(line, fd);
 		free(line);
 	}
-	if (close(fd) < 0)
-		return (NULL);
-	return (available_name); 
+	return (close(fd), NULL);
 }

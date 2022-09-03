@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:11:11 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/01 13:05:23 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:30:52 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char	**ft_split(char const *s, char c)
 			tab[j] = ft_substr(s, i, last_index(&s[i], c));
 			if (!tab[j])
 				return (free_tab(tab));
-			// collect_libft_readline(tab[j]);
 			i = i + last_index(&s[i], c) - 1;
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:19:28 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/27 15:05:58 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:51:51 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	built_env(t_env **our_env)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	tmp = *our_env;
 	while (tmp)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:20:55 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/28 18:15:47 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 20:51:24 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	option_n_enbaled(char **cmd_args)
 {
-	int i;
-	int j;
-	int start;
+	int	i;
+	int	j;
+	int	start;
 
 	i = 1;
 	start = 1;
@@ -39,8 +39,8 @@ int	option_n_enbaled(char **cmd_args)
 
 int	built_echo(char **cmd_args)
 {
-	int start;
-	int size;
+	int	start;
+	int	size;
 
 	start = option_n_enbaled(cmd_args);
 	size = start;
