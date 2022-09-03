@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:25:23 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 20:21:01 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:11:58 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ void	update_env_pwd(t_env **our_env, char *new_value)
 	
 	pwd = find_variable(our_env, "PWD");
 	oldpwd = find_variable(our_env, "OLDPWD");
-	if (oldpwd)
+	if (oldpwd && pwd)
 	{
 		oldpwd->value = pwd->value;
 		pwd->value = new_value;
 	}
-	else
+	else if (pwd)
 		pwd->value = new_value;
 }
 

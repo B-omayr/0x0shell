@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:43:25 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 22:35:04 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:54:46 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void    run_simple_cmd(t_main *main)
 	print_error(main->cmd->command[1], main->cmd->command[0], ": command not found");
 	exit(127);
 }
-
 
 int simple_command(t_main *v_main)
 {

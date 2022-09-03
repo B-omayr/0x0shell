@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 22:10:18 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:56:48 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ void			update_env_pwd(t_env **our_env, char *new_value);
 char			**convert_env_to_matrix(t_env *our_env);
 int				is_it_builtin(char **cmd);
 int				excute_builtins(char **cmd, t_env **our_env);
+void			shell_level(t_main *v_main);
 
 /****************redirections****************/
 

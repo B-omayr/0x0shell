@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 17:13:11 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 23:00:10 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int main(int ac, char **av, char **env)
 		add_history(v_main.line);
 		v_main.list = ft_lexer(v_main.line, &v_main);
 		if(v_main.list == NULL)
-			return (0);
+			break ;
 		if (!check_syntax(v_main.list, &v_main))
 		{
 			v_main.cmd = ft_parse(v_main.list, v_main.h_env);

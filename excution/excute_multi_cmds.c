@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:45:30 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 21:16:47 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:55:08 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	excute_cmd(t_main *v_main, t_command *cmd)
 	char *path;
 	char **env;
 	handel_redirections(cmd);
+	if (!ft_strncmp(v_main->cmd->command[0], "./minishell", 12))
+		shell_level(v_main);
 	if (is_it_builtin(cmd->command))
 	{
 		excute_builtins(cmd->command, &v_main->h_env);
