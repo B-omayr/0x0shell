@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 15:16:37 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 17:13:11 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,18 +109,6 @@ void	free_list(t_free* list) {
     free(list->to_free);
 	free(list);
 }
-
-
-// void	free_list(t_free *list)
-// {
-// 	while(list)
-// 	{
-// 		printf("laaa\n");
-// 		free(list->to_free);
-// 		printf("%p\n", list->to_free);
-// 		list = list->next;
-// 	}
-// }
 
 int main(int ac, char **av, char **env)
 {

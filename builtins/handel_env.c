@@ -6,7 +6,11 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:25:23 by youchenn          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/03 10:56:47 by iomayr           ###   ########.fr       */
+=======
+/*   Updated: 2022/09/03 15:26:31 by youchenn         ###   ########.fr       */
+>>>>>>> 6cf2874ba6c539b124cc26bbfa59a366a6f8caa9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +47,6 @@ char	*get_variable_name(char *parsed_line)
 		var_name = ft_substr(parsed_line, 0, ft_strlen(parsed_line) + 1);
 	if (!var_name)
 		return (NULL);
-	// printf("%s\n", var_name);
 	return (var_name);
 }
 

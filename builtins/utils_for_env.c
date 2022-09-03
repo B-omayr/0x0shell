@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:32:00 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/01 15:45:16 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 12:26:58 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	**convert_env_to_matrix(t_env *our_env)
 	{
 		tmp2 = ft_strjoin(tmp->name, "=");
 		matrix[size] = ft_strjoin(tmp2, tmp->value);
-		//free(tmp2);
 		size++;
 		tmp = tmp->next;
 	}
