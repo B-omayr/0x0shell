@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handel_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:25:23 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/01 15:45:13 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 10:56:47 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ void	delete_var_env(t_env **our_env, t_env *var_to_delete)
 			tmp = tmp->next;
 		tmp->next = var_to_delete->next;
 	}
-	//free(var_to_delete->name);
-	//free(var_to_delete->value);
-	//free(var_to_delete);
 }
 
 void	update_env_pwd(t_env **our_env, char *new_value)

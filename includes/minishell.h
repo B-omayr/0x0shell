@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 17:32:43 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 11:31:32 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_global	g_global;
 typedef struct s_lexer{
 	int		i;
 	char	*token;
-	char	*temp;
 }	t_lexer;
 
 typedef struct s_env{

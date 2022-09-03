@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:29:31 by youchenn          #+#    #+#             */
-/*   Updated: 2022/08/31 13:34:17 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:31:22 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int built_cd(char *path, t_env **our_env)
 	if (chdir(path) < 0)
 	{
 		printf("bash: cd: %s: No such file or directory\n", path);
+		update_env_pwd(our_env, getcwd(NULL, 0));
 		return (-1);
 	}
-	update_env_pwd(our_env, getcwd(NULL, 0));
 	return (0);
 }

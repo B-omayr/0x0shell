@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 09:07:19 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 17:03:31 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:16:37 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ int main(int ac, char **av, char **env)
 				run_multi_cmd(&v_main);
 		}
 		g_global.quotes_count = 0;
-		// free(v_main.line);
 	}
 	free_list(g_global.free_collect);
 	close(IO[0]);

@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:37:48 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 16:23:28 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 11:30:42 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ t_tokens_list	*ft_lexer(char *ln, t_main *v_main)
 	while (ln[lexer.i])
 	{
 		lexer.token = ft_strdup1("");
-		lexer.temp = lexer.token;
 		if (lexer.i == 0)
 			while (ln[lexer.i] == '\t' || ln[lexer.i] == ' ')
 				lexer.i++;

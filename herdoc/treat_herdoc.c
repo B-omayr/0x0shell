@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_herdoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:32:16 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 16:44:04 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/03 10:28:35 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ char	*traite_herdoc(char *del, t_main *v_main)
 		if (!line || !ft_strncmp(del, line, ft_strlen(del) + 1))
 		{
 			close(fd);
-			//free(line);
+			free(line);
 			return (available_name);
 		}
 		if (search_for_dollar(line) && v_main->cmd->is_delimter_in_quotes)
 			expand_dollar(&line, v_main);
 		ft_putendl_fd(line, fd);
-		//free(line);
+		free(line);
 	}
 	if (close(fd) < 0)
 		return (NULL);

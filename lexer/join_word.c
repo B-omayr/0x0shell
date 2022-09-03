@@ -6,7 +6,7 @@
 /*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:00:17 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/02 16:23:14 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/03 11:58:12 by iomayr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	join_word(t_tokens_list *head)
 			current->next = temp->next;
 		}
 		else
-		current = current->next;
+			current = current->next;
 	}
 	return (0);
 }
