@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 12:13:49 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/04 09:40:43 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 12:51:08 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ char	*find_cmd_path(t_env **our_env, char *cmd)
 	t_env	*path;
 
 	path = find_variable(our_env, "PATH");
+	if (!path)
+	{
+		print_error(cmd, " ", \
+		": command not found");
+		exit(127);
+	}
 	paths = ft_split(path->value, ':');
 	if (!paths)
 		return (NULL);
