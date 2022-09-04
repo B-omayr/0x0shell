@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 08:39:31 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/04 10:31:54 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 11:50:58 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	handle_heredoc(int sig)
 	if (sig != SIGINT)
 		return ;
 	close(0);
+	g_global.exist_status = 1;
 	g_global.skip = 1;
 	return ;
 }
