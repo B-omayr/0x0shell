@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:32:00 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 12:26:58 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:36:56 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**convert_env_to_matrix(t_env *our_env)
 {
-	t_env 	*tmp;
+	t_env	*tmp;
 	char	*tmp2;
 	char	**matrix;
 	int		size;

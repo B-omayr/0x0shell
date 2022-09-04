@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:32:14 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 21:22:16 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 10:39:54 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int	handel_redirections(t_command *cmd)
 			|| tmp->type == DOUBLE_LESSER)
 		{
 			g_global.exist_status = in_redirection(tmp->f_name);
-			// if (tmp->type == DOUBLE_LESSER)
-			// 	unlink(tmp->f_name);
+			if (tmp->type == DOUBLE_LESSER)
+				unlink(tmp->f_name);
 		}
 		else if (tmp->type == DOUBLE_GREATER)
 			g_global.exist_status = append_redirection(tmp->f_name);

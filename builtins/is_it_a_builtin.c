@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 09:08:30 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 14:04:04 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:36:12 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	is_it_builtin(char **cmd)
 {
-   return (!ft_strncmp(cmd[0], "echo", 5) || !ft_strncmp(cmd[0], "cd", 3) ||\
-		!ft_strncmp(cmd[0], "pwd", 4) || !ft_strncmp(cmd[0], "export", 7) \
-		|| !ft_strncmp(cmd[0], "unset", 6) || !ft_strncmp(cmd[0], "env", 4) ||\
-		!ft_strncmp(cmd[0], "exit", 5));
+	return (!ft_strncmp(cmd[0], "echo", 5) || !ft_strncmp(cmd[0], "cd", 3) || \
+			!ft_strncmp(cmd[0], "pwd", 4) || !ft_strncmp(cmd[0], "export", 7) \
+			|| !ft_strncmp(cmd[0], "unset", 6) || \
+			!ft_strncmp(cmd[0], "env", 4) || \
+			!ft_strncmp(cmd[0], "exit", 5));
 }

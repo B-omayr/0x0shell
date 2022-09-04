@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:34:06 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 17:13:20 by iomayr           ###   ########.fr       */
+/*   Updated: 2022/09/04 11:00:18 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int	check_syntax(t_tokens_list *head, t_main *v_main)
 		{
 			tmp = temp->next->value;
 			temp->next->value = traite_herdoc(temp->next->value, v_main);
+			if (g_global.skip)
+				return (1);
 			temp = temp->next;
 		}
 		temp = temp->next;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iomayr <iomayr@student.42.fr>              +#+  +:+       +#+         #
+#    By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 16:41:15 by iomayr            #+#    #+#              #
-#    Updated: 2022/09/03 11:07:17 by iomayr           ###   ########.fr        #
+#    Updated: 2022/09/04 11:01:00 by youchenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = lexer/expand_dollar_utiles.c lexer/join_word.c \
 		builtins/builtin_cd.c     \
 		builtins/is_it_a_builtin.c \
 		builtins/builtin_echo.c   \
+		builtins/print_error.c   \
 		builtins/builtin_env.c    \
 		builtins/builtin_export.c \
 		builtins/builtin_pwd.c    \
@@ -40,6 +41,8 @@ SRC = lexer/expand_dollar_utiles.c lexer/join_word.c \
 		excution/utils.c 		\
 		excution/excute_multi_cmds.c \
 		excution/simple_command.c \
+		signals/her_doc_signals.c signals/main_signals.c \
+		leaks_collecter/collecter_malloc.c leaks_collecter/trash_list.c \
 
 OBJ = ${SRC:%.c=%.o}
 

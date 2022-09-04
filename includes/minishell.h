@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:27:55 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 22:56:48 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 10:32:06 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define DOUBLE_GREATER	7
 # define DOUBLE_LESSER	8
 # define ENEWLINE		9
+# define PROMPT			"\e[1;32m➜  \e[1;31mMini👽shell\e[1;33m ➤ \e[1;37m\e[m"
 
 typedef struct s_free{
 	void			*to_free;
@@ -96,7 +97,17 @@ typedef struct s_main{
 	t_env			*h_env;
 	char			*line;
 	bool			dollar_type;
+
 }	t_main;
+
+/********************collecter*****************/
+
+t_free			*ft_lstnew1(void *content);
+t_free			*ft_lstlast1(t_free *lst);
+void			ft_lstadd_back1(t_free **collecter, t_free *new);
+void			*ft_malloc(size_t size);
+void			collect_libft_readline(void *to_collect);
+void			free_list(t_free *list);
 
 /****************libft Function****************/
 
@@ -206,5 +217,12 @@ int				list_cmd_size(t_command *cmd);
 void			collect_libft_readline(void *to_collect);
 void			heredoc_signal(void);
 void			print_error(char *arg, char *cmd, char *reason);
+
+/********************handling signals*****************/
+
+void			ft_sig_handler(int sig);
+void			handle_signal(void);
+void			handle_heredoc(int sig);
+void			heredoc_signal(void);
 
 #endif

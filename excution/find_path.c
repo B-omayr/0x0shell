@@ -6,13 +6,11 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 12:13:49 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 15:00:38 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:40:43 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-
 
 char	*get_cmd(char **paths, char *cmd)
 {
@@ -39,8 +37,8 @@ char	*get_cmd(char **paths, char *cmd)
 
 char	*find_cmd_path(t_env **our_env, char *cmd)
 {
-	char **paths;
-	t_env *path;
+	char	**paths;
+	t_env	*path;
 
 	path = find_variable(our_env, "PATH");
 	paths = ft_split(path->value, ':');
@@ -48,6 +46,3 @@ char	*find_cmd_path(t_env **our_env, char *cmd)
 		return (NULL);
 	return (get_cmd(paths, cmd));
 }
-
-
-

@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 08:26:48 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 22:26:50 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:26:30 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,6 @@ void	export_var(char *variable, t_env **our_env, int to_join)
 	}
 	else
 		add_variable_to_env(name, value, our_env);
-}
-
-void	print_error(char *arg, char *cmd, char *reason)
-{
-	ft_putstr_fd("minishell: ", 1);
-	ft_putstr_fd(cmd, 1);
-	ft_putstr_fd(": ", 1);
-	ft_putstr_fd(arg, 1);
-	ft_putendl_fd(reason, 1);
 }
 
 void	export_print(t_env *tmp)

@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:45:30 by youchenn          #+#    #+#             */
-/*   Updated: 2022/09/03 22:55:08 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:39:49 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	excute_cmd(t_main *v_main, t_command *cmd)
 {
-	char *path;
-	char **env;
+	char	*path;
+	char	**env;
+
 	handel_redirections(cmd);
 	if (!ft_strncmp(v_main->cmd->command[0], "./minishell", 12))
 		shell_level(v_main);
@@ -23,8 +24,7 @@ void	excute_cmd(t_main *v_main, t_command *cmd)
 	{
 		excute_builtins(cmd->command, &v_main->h_env);
 		exit(0);
-		
-	} 
+	}
 	path = find_cmd_path(&v_main->h_env, cmd->command[0]);
 	env = convert_env_to_matrix(v_main->h_env);
 	execve(path, cmd->command, env);
@@ -32,13 +32,14 @@ void	excute_cmd(t_main *v_main, t_command *cmd)
 	exit(127);
 }
 
-void    dup_close(int main_fd, int sec_fd, int origin_fd)
+void	dup_close(int main_fd, int sec_fd, int origin_fd)
 {
-    close(origin_fd);
-    dup2(main_fd, origin_fd);
-    close(main_fd);
-    close(sec_fd);
+	close(origin_fd);
+	dup2(main_fd, origin_fd);
+	close(main_fd);
+	close(sec_fd);
 }
+
 void	handel_wait_exit(t_command *head)
 {
 	int	status;
@@ -59,8 +60,8 @@ void	handel_wait_exit(t_command *head)
 
 void	run_multi_cmd(t_main *v_main)
 {
-	int fd[2];
-	t_command *head;
+	int			fd[2];
+	t_command	*head;
 
 	head = v_main->cmd;
 	while (head)
@@ -72,11 +73,11 @@ void	run_multi_cmd(t_main *v_main)
 		if (head->pid == 0)
 		{
 			if (head->next)
-                dup_close(fd[1], fd[0], 1);
+				dup_close(fd[1], fd[0], 1);
 			excute_cmd(v_main, head);
 		}
 		else
-            dup_close(fd[0], fd[1], 0 );
+			dup_close(fd[0], fd[1], 0);
 		head = head->next;
 	}
 	head = v_main->cmd;

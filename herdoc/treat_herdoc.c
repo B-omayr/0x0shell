@@ -6,7 +6,7 @@
 /*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 16:32:16 by iomayr            #+#    #+#             */
-/*   Updated: 2022/09/03 20:45:31 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/09/04 11:34:31 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,16 @@ char	*traite_herdoc(char *del, t_main *v_main)
 	if (fd < 0)
 		return (NULL);
 	heredoc_signal();
-	while (!g_global.skip)
+	line = readline("herdoc> ");
+	while (line && ft_strncmp(del, line, ft_strlen(del) + 1))
 	{
-		line = readline("herdoc> ");
-		if (!line || !ft_strncmp(del, line, ft_strlen(del) + 1))
-		{
-			close(fd);
-			free(line);
-			return (available_name);
-		}
 		if (search_for_dollar(line) && v_main->cmd->is_delimter_in_quotes)
 			expand_dollar(&line, v_main);
 		ft_putendl_fd(line, fd);
 		free(line);
+		line = readline("herdoc> ");
 	}
-	return (close(fd), NULL);
+	free(line);
+	close(fd);
+	return (available_name);
 }
